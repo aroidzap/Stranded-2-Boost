@@ -46,7 +46,7 @@ Function parse_commandline()
 						pp=pp+Len(cmd$)
 					;win
 					Case "-win"
-						con_add("COMMANDLINE: Using windowed mode",Cbmpf_green):set_scrwin=2
+						con_add("COMMANDLINE: Using windowed mode",Cbmpf_green):set_scrwin=6
 						pp=pp+Len(cmd$)
 					;setup
 					Case "-setup"
