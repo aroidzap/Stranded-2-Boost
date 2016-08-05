@@ -764,11 +764,11 @@ Function e_environment_setup_water()
 		ShowEntity env_sea
 		;Texture
 		If env_watertex=0 Then
-			env_watertex=CreateTexture(set_water_texsize,set_water_texsize,1+128+256)
+			env_watertex=CreateTexture(set_water_texsize,set_water_texsize,(1+128+256) AND 65279)
 		Else
 			If TextureHeight(env_watertex)<>set_water_texsize Then
 				FreeTexture env_watertex
-				env_watertex=CreateTexture(set_water_texsize,set_water_texsize,1+128+256)
+				env_watertex=CreateTexture(set_water_texsize,set_water_texsize,(1+128+256) AND 65279)
 			EndIf
 		EndIf
 		;Cam

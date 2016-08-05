@@ -23,7 +23,7 @@ End Function
 ;### Load Texture
 Function load_texture(path$,mode=1)
 	If set_debug Then con_add("Loading Texture: "+path$)
-	Local image=LoadTexture(path$,mode)
+	Local image=LoadTexture(path$,mode AND 65279)
 	If image=0 Then RuntimeError("Unable to load Texture "+path$)
 	Return image
 End Function
