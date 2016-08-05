@@ -45,6 +45,7 @@ Function grass_map()
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)
 	SetBuffer BackBuffer()
 	;Calculate Value needed to get the Colormap Position
 	grass_f#=Float(Float(Float(ter_size)/Float(grass_mapsize))*Float(Cworld_size))

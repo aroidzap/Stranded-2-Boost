@@ -86,6 +86,7 @@ If  FileType("sys\gfx\icons_passive.bmp")<>1 Then
 			Next
 		Next
 		UnlockBuffer ImageBuffer(gfx_icons_passive,i)
+		BufferDirty ImageBuffer(gfx_icons_passive,i)
 		SetBuffer ImageBuffer(tempimg)
 		DrawBlock gfx_icons_passive,i*32,0,i
 	Next
@@ -106,10 +107,12 @@ gfx_border(3)=CreateImage(set_scrx,16)
 SetBuffer ImageBuffer(gfx_border(3))
 TileBlock gfx_border(1)
 MaskImage gfx_border(3),255,0,255
+BufferDirty ImageBuffer(gfx_border(3))
 gfx_border(4)=CreateImage(16,set_scry)
 SetBuffer ImageBuffer(gfx_border(4))
 TileBlock gfx_border(2)
 MaskImage gfx_border(4),255,0,255
+BufferDirty ImageBuffer(gfx_border(4))
 
 ;### Cursor
 Dim gfx_cursor(6)
@@ -134,6 +137,7 @@ TileBlock gfx_bg(1)
 Color 255,0,255:Rect 202,0,8,set_scry,1
 DrawImage gfx_border(4),194,0
 MaskImage gfx_sidebar,255,0,255
+BufferDirty ImageBuffer(gfx_sidebar)
 
 Global gfx_win=CreateImage(580,595)
 SetBuffer ImageBuffer(gfx_win)
@@ -146,6 +150,7 @@ DrawImage gfx_border(4),564,0
 DrawImage gfx_border(0),0,579
 DrawImage gfx_border(0),564,579
 MaskImage gfx_win,255,0,255
+BufferDirty ImageBuffer(gfx_win)
 
 Global gfx_winbar=CreateImage(580,16)
 SetBuffer ImageBuffer(gfx_winbar)
@@ -153,6 +158,7 @@ DrawBlock gfx_border(3),0,0
 DrawImage gfx_border(0),0,0
 DrawImage gfx_border(0),564,0
 MaskImage gfx_winbar,255,0,255
+BufferDirty ImageBuffer(gfx_winbar)
 
 bmpf_loadscreen(s$(1),10)
 
@@ -442,6 +448,7 @@ Function makedark(image,darkf#=4.5)
 	Next
 	UnlockBuffer ImageBuffer(img)
 	;MaskImage img,255,0,255
+	BufferDirty ImageBuffer(img)
 	Return img
 End Function
 

@@ -68,6 +68,7 @@ Function e_clear()
 		FreeImage gfx_waterimg_custom
 		SetBuffer TextureBuffer(gfx_water)
 		DrawBlock gfx_waterimg,0,0
+		BufferDirty TextureBuffer(gfx_water)
 		SetBuffer BackBuffer()
 		gfx_waterimg_custom=0
 	EndIf
@@ -471,6 +472,7 @@ Function e_clear()
 		If mb_tex<>0 Then
 			SetBuffer TextureBuffer(mb_tex)
 			Cls
+			BufferDirty TextureBuffer(mb_tex)
 			SetBuffer BackBuffer()
 		EndIf
 	EndIf

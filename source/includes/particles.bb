@@ -1229,6 +1229,7 @@ Function p_pixelizeeat(rx,ry,img,er=0,eg=1,eb=0)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(img)
+	BufferDirty ImageBuffer(img)
 	SetBuffer BackBuffer()
 End Function
 

@@ -54,6 +54,7 @@ Function load_map(path$,pw$)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(map_image)
+	BufferDirty ImageBuffer(map_image)
 	SetBuffer BackBuffer()
 	;Debug Show Map Image
 	If set_debug_load=1 Then
@@ -143,6 +144,7 @@ Function load_map(path$,pw$)
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)
 	SetBuffer BackBuffer()
 	
 	;Debug
@@ -507,7 +509,7 @@ Function load_map(path$,pw$)
 		ElseIf Txc\mode=9 Then
 			set_state(Txc\typ,Txc\parent_class,Txc\parent_id)
 			If get_state(Txc\typ,Txc\parent_class,Txc\parent_id)
-				split$(Txc\stuff$,"¿",15)
+				split$(Txc\stuff$,"ï¿½",15)
 				TCstate\x#=Float(splits(0))
 				TCstate\y#=Float(splits(1))
 				TCstate\z#=Float(splits(2))
@@ -616,6 +618,7 @@ Function load_map_header(path$,image=1)
 			Next
 		Next
 		UnlockBuffer ImageBuffer(map_image)
+		BufferDirty ImageBuffer(map_image)
 		SetBuffer BackBuffer()
 		MaskImage map_image,255,0,255
 	Else

@@ -369,7 +369,7 @@ Function gui_input(x,y,w,id,active=1,tt$="")
 			Local key=in_key
 			Local pre$
 			;Add
-			If (key>31 And key<127) Or (Instr("ÄäÖöÜüß",Chr(key))>0) Then
+			If (key>31 And key<127) Or (Instr("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Chr(key))>0) Then
 				pre$=in_input$(id)
 				in_input$(id)=in_input$(id)+Chr(key)
 				If bmpf_len(in_input$(id),0)>w-3 Then
@@ -922,7 +922,9 @@ Function gui_win_color()
 			WritePixelFast x,y,rgb
 		Next
 	Next
-	UnlockBuffer ImageBuffer(colorboard):SetBuffer BackBuffer()
+	UnlockBuffer ImageBuffer(colorboard)
+	BufferDirty ImageBuffer(colorboard)
+	SetBuffer BackBuffer()
 	;Loop
 	Local quit=0,ret=0
 	While quit=0
@@ -1574,9 +1576,9 @@ Function gui_win_command()
 							;	Exit
 							;Else
 								If Len(in$)>2 Then
-									If (Instr(in$,"¦")>0) Then
+									If (Instr(in$,"ï¿½")>0) Then
 										WriteLine(stream,in$)
-										split(in$,"¦",1)
+										split(in$,"ï¿½",1)
 										con_add("Loading '"+splits$(0)+"'...")
 										loadedlines=loadedlines+1
 									Else

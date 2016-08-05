@@ -15,7 +15,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Main Header
 	bmpf_loadscreen(s$(10),10)
-	WriteLine(stream,"### Stranded II Mapfile ©by Unreal Software 2004-2007")
+	WriteLine(stream,"### Stranded II Mapfile ï¿½by Unreal Software 2004-2007")
 	WriteLine(stream,Cversion$)					;Version
 	WriteLine(stream,CurrentDate())				;Date
 	WriteLine(stream,CurrentTime())				;Time
@@ -58,6 +58,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 		Next
 	Next
 	UnlockBuffer ImageBuffer(map_image)
+	BufferDirty ImageBuffer(map_image)
 	SetBuffer BackBuffer()
 	
 	;Password Header
@@ -106,6 +107,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)
 	SetBuffer BackBuffer()
 	
 	;Heightmap
@@ -447,6 +449,7 @@ Function save_map_image(mode$)
 		EndIf
 		SetBuffer ImageBuffer(map_image)
 		DrawImage pvimg,0,0
+		BufferDirty ImageBuffer(map_image)
 		SetBuffer BackBuffer()
 		FreeImage pvimg
 	EndIf

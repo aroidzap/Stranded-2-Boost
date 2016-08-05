@@ -100,7 +100,7 @@ Function editor_ini_sc()
 			in$=ReadLine(stream)
 			in$=Trim(in$)
 			If in$<>"" Then
-				split$(in$,"¦",3)
+				split$(in$,"ï¿½",3)
 				Tsc.Tsc=New Tsc
 				Tsc\cmd$=splits$(0)
 				Tsc\groups$=splits$(1)
@@ -451,7 +451,7 @@ Function editor_gencolormap(updatecolorset=1)
 			;EndIf
 		Next
 	Next
-	
+	BufferDirty TextureBuffer(ter_tex_color)
 	SetBuffer BackBuffer()
 End Function
 
@@ -610,6 +610,7 @@ Function editor_buffertoheightmap()
 		Next
 	Next
 	UnlockBuffer ImageBuffer(in_editor_buffer)
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -645,6 +646,7 @@ Function editor_grassmaptobuffer()
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)
 	;Save to Buffer
 	Local size=grass_mapsize
 	If in_editor_buffer<>0 Then FreeImage in_editor_buffer
@@ -665,6 +667,7 @@ Function editor_grassmaptobuffer()
 		Next
 	Next
 	UnlockBuffer ImageBuffer(in_editor_buffer)
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -822,6 +825,7 @@ Function editor_bufferpaint(x,y,size,r,g,b,spray=0,a#)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(in_editor_buffer)
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -842,6 +846,7 @@ Function editor_buffergetcolor(x,y)
 		in_slider(0)=Float(r)/2.55
 	EndIf
 	
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -901,6 +906,7 @@ Function editor_buffergamma(x,y,size,mode,power#=10.)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(in_editor_buffer)
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -952,6 +958,7 @@ Function editor_bufferpaintgrassmap(x,y,size)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(in_editor_buffer)
+	BufferDirty ImageBuffer(in_editor_buffer)
 	SetBuffer BackBuffer()
 End Function
 
@@ -1120,6 +1127,7 @@ Function editor_paintcm(x3d#,z3d#,size,r,g,b)
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)
 	SetBuffer BackBuffer()	
 End Function
 

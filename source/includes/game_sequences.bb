@@ -279,6 +279,7 @@ Function seq_update()
 							Default
 								con_add("seqimagetext invalid alignment (only 0,1,2 allowed)",Cbmpf_red)
 						End Select
+						BufferDirty ImageBuffer(seq_img)
 						SetBuffer BackBuffer()
 					EndIf
 				;Camfollow

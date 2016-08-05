@@ -193,19 +193,19 @@ Function parse_commands(jumptosemi=1,internal=0)
 				Select classint
 					Case Cclass_object
 						If typ<1 Or typ>Cobject_count Then parse_error("typerange",typ)
-						Dobject_script$(typ)=Dobject_script$(typ)+"¦"+txt$
+						Dobject_script$(typ)=Dobject_script$(typ)+"ï¿½"+txt$
 						Dobject_scriptk$(typ)=preparse_string$(Dobject_script$(typ))
 					Case Cclass_unit
 						If typ<1 Or typ>Cunit_count Then parse_error("typerange",typ)
-						Dunit_script$(typ)=Dunit_script$(typ)+"¦"+txt$
+						Dunit_script$(typ)=Dunit_script$(typ)+"ï¿½"+txt$
 						Dunit_scriptk$(typ)=preparse_string$(Dunit_script$(typ))
 					Case Cclass_item
 						If typ<1 Or typ>Citem_count Then parse_error("typerange",typ)
-						Ditem_script$(typ)=Ditem_script$(typ)+"¦"+txt$
+						Ditem_script$(typ)=Ditem_script$(typ)+"ï¿½"+txt$
 						Ditem_scriptk$(typ)=preparse_string$(Ditem_script$(typ))
 					Case Cclass_info
 						If typ<1 Or typ>Cinfo_count Then parse_error("typerange",typ)
-						Dinfo_script$(typ)=Dinfo_script$(typ)+"¦"+txt$
+						Dinfo_script$(typ)=Dinfo_script$(typ)+"ï¿½"+txt$
 						Dinfo_scriptk$(typ)=preparse_string$(Dinfo_script$(typ))
 					Default
 						parse_error("wrongclass",parse_getclasstxt$(classint))
@@ -399,7 +399,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 			For Tobject.Tobject=Each Tobject
 				If EntityDistance(Tobject\h,tempp)<range Then
 					skip=set_parsecache(Cclass_object,Tobject\id,event$)
-					If Instr(Dobject_scriptk$(Tobject\typ),"¦"+event$) Then
+					If Instr(Dobject_scriptk$(Tobject\typ),"ï¿½"+event$) Then
 						parse_task(Cclass_object,Tobject\id,event$,"",Dobject_script(Tobject\typ))
 						skip=1
 					EndIf
@@ -414,7 +414,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 				For Tunit.Tunit=Each Tunit
 					If EntityDistance(Tunit\h,tempp)<range Then
 						skip=set_parsecache(Cclass_unit,Tunit\id,event$)
-						If Instr(Dunit_scriptk$(Tunit\typ),"¦"+event$) Then
+						If Instr(Dunit_scriptk$(Tunit\typ),"ï¿½"+event$) Then
 							parse_task(Cclass_unit,Tunit\id,event$,"",Dunit_script(Tunit\typ))
 							skip=1
 						EndIf
@@ -431,7 +431,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 					If Titem\parent_mode=Cpm_out Then
 						If EntityDistance(Titem\h,tempp)<range Then
 							skip=set_parsecache(Cclass_item,Titem\id,event$)
-							If Instr(Ditem_scriptk$(Titem\typ),"¦"+event$) Then
+							If Instr(Ditem_scriptk$(Titem\typ),"ï¿½"+event$) Then
 								parse_task(Cclass_item,Titem\id,event$,"",Ditem_script(Titem\typ))
 								skip=1
 							EndIf
@@ -448,7 +448,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 				For Tinfo.Tinfo=Each Tinfo
 					If EntityDistance(Tinfo\h,tempp)<range Then
 						skip=set_parsecache(Cclass_info,Tinfo\id,event$)
-						If Instr(Dinfo_scriptk$(Tinfo\typ),"¦"+event$) Then
+						If Instr(Dinfo_scriptk$(Tinfo\typ),"ï¿½"+event$) Then
 							parse_task(Cclass_info,Tinfo\id,event$,"",Dinfo_script(Tinfo\typ))
 							skip=1
 						EndIf
@@ -1308,6 +1308,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 				env_wcol(0)=255-ColorRed()
 				env_wcol(1)=255-ColorGreen()
 				env_wcol(2)=255-ColorBlue()
+				BufferDirty TextureBuffer(gfx_water)
 				SetBuffer BackBuffer()
 			Else
 				parse_error("unable to load water texture '"+path$+"'")
@@ -2163,7 +2164,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 			If pv_buffer$="" Then
 				pv_buffer$=params()
 			Else
-				pv_buffer$=pv_buffer$+"¦"+params()
+				pv_buffer$=pv_buffer$+"ï¿½"+params()
 			EndIf
 
 		;Clear - free buffer
@@ -2280,10 +2281,10 @@ Function parse_commands(jumptosemi=1,internal=0)
 				If txt$=0 Or txt$="" Then
 					parse_error("txtsource",source$)
 				Else
-					in_msgtext$=in_msgtext$+"¦"+txt$
+					in_msgtext$=in_msgtext$+"ï¿½"+txt$
 				EndIf
 			Else
-				in_msgtext$=in_msgtext$+"¦"+pv_buffer$:pv_buffer$=""	;Use Buffer as Source
+				in_msgtext$=in_msgtext$+"ï¿½"+pv_buffer$:pv_buffer$=""	;Use Buffer as Source
 			EndIf
 			
 		;Message Replace
@@ -2898,12 +2899,12 @@ Function parse_commands(jumptosemi=1,internal=0)
 			For Tx.Tx=Each Tx
 				If Tx\mode=2 Then 
 					If Tx\key$=entry$ Then
-						c=cinstr(Tx\value$,"¦")
-						split$(Tx\value$,"¦",c)
+						c=cinstr(Tx\value$,"ï¿½")
+						split$(Tx\value$,"ï¿½",c)
 						splits$(entryl)=newline$
 						Tx\value$=""
 						For i=0 To c
-							Tx\value$=Tx\value$+splits$(i)+"¦"
+							Tx\value$=Tx\value$+splits$(i)+"ï¿½"
 						Next
 						Exit
 					EndIf
@@ -2934,7 +2935,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 					For Tx.Tx=Each Tx
 						If Tx\mode=2 Then 
 							If Tx\key$=entry$ Then
-								Tx\value$=Tx\value$+"¦"+txt$
+								Tx\value$=Tx\value$+"ï¿½"+txt$
 								Exit
 							EndIf
 						EndIf
@@ -2944,7 +2945,7 @@ Function parse_commands(jumptosemi=1,internal=0)
 				For Tx.Tx=Each Tx										;Use Buffer as Source
 					If Tx\mode=2 Then 
 						If Tx\key$=entry$ Then
-							Tx\value$=Tx\value$+"¦"+pv_buffer$
+							Tx\value$=Tx\value$+"ï¿½"+pv_buffer$
 							pv_buffer$=""
 							Exit
 						EndIf

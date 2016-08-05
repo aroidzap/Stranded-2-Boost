@@ -532,6 +532,7 @@ Function e_environment_update_water(forced=0)
 				CopyRect 0,y,size,1,Sin(isin+Float(Float(y)*2.8125))*3.,y
 			Next
 	End Select	
+	BufferDirty TextureBuffer(gfx_water)
 	SetBuffer BackBuffer()
 	
 	;Over Water
@@ -1128,6 +1129,7 @@ Function e_terrainhm(file$,scale#)
 		Next
 	Next
 	UnlockBuffer ImageBuffer(temp)
+	BufferDirty ImageBuffer(temp)
 	SetBuffer BackBuffer()
 	FreeImage temp
 	Return 1
