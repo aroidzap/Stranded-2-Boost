@@ -10,3 +10,4 @@ if not exist "%build_dir%/Debug/" mkdir "%build_dir%/Debug/"
 "%blitzpath%/bin/blitzcc.exe" -d -o "%build_dir%/Debug/StrandedII.exe" "%build_dir%/source/StrandedII.bb"
 @if not "%1"=="-q" ( pause )
 @echo on
+@if not %errorlevel%==0 (exit %errorlevel%)

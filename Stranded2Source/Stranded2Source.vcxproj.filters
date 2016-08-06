@@ -372,15 +372,13 @@
     <None Include="source\includes\watersystem.bb">
       <Filter>Source Files\includes</Filter>
     </None>
+    <None Include="source\includes\editor_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\previewreadme.txt">
       <Filter>Source Files</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="source\includes\editor_functions.bb">
-      <Filter>Source Files\includes</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>
