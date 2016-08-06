@@ -31,11 +31,11 @@ Function load_infos()
 		file$=NextFile(dir)
 		If Left(file$,5)="infos" And Lower(Right(file$,4))=".inf" Then
 			
-			stream=ReadFile("sys\"+file$)
+			stream=BufReadFile("sys\"+file$)
 			If stream=0 Then RuntimeError("Unable to read sys\"+file$)
 
-			While Not Eof(stream)
-				in$=ReadLine(stream)
+			While Not BufEof(stream)
+				in$=BufReadLine(stream)
 				equal=Instr(in$,"=")
 				If Left(in$,1)="#" Then equal=0
 				If equal>0 Then
@@ -59,8 +59,8 @@ Function load_infos()
 							
 						Case "script"
 							If val$="start" Then
-								While Not Eof(stream)
-									val$=ReadLine(stream)
+								While Not BufEof(stream)
+									val$=BufReadLine(stream)
 									If val$="script=end" Then
 										Exit
 									Else
@@ -79,8 +79,8 @@ Function load_infos()
 						;Description
 						Case "description"
 							If val$="start" Then
-								While Not Eof(stream)
-									val$=ReadLine(stream)
+								While Not BufEof(stream)
+									val$=BufReadLine(stream)
 									If val$="description=end" Then
 										Exit
 									Else
@@ -93,7 +93,7 @@ Function load_infos()
 					End Select
 				EndIf
 			Wend
-			CloseFile(stream)
+			BufCloseFile(stream)
 			
 		ElseIf file$="" Then
 			Exit

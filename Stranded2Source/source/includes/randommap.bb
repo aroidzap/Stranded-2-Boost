@@ -24,11 +24,11 @@ Function load_randommap(loadid=0)
 	Repeat
 		file$=NextFile(dir)
 		If Left(file$,6)="random" Then	
-			stream=ReadFile("sys\"+file$)
+			stream=BufReadFile("sys\"+file$)
 			If stream=0 Then RuntimeError("Unable to read sys\"+file$)
 	
-			While Not Eof(stream)
-				in$=ReadLine(stream)
+			While Not BufEof(stream)
+				in$=BufReadLine(stream)
 				equal=Instr(in$,"=")
 				If Left(in$,1)="#" Then equal=0
 				If equal>0 Then
@@ -154,8 +154,8 @@ Function load_randommap(loadid=0)
 						Case "script"
 							If readok=1 Then
 								If val$="start" Then
-									While Not Eof(stream)
-										val$=ReadLine(stream)
+									While Not BufEof(stream)
+										val$=BufReadLine(stream)
 										If val$="script=end" Then
 											Exit
 										Else
@@ -165,8 +165,8 @@ Function load_randommap(loadid=0)
 								EndIf
 							Else
 								If val$="start" Then
-									While Not Eof(stream)
-										val$=ReadLine(stream)
+									While Not BufEof(stream)
+										val$=BufReadLine(stream)
 										If val$="script=end" Then
 											Exit
 										EndIf
@@ -178,7 +178,7 @@ Function load_randommap(loadid=0)
 					End Select
 				EndIf
 			Wend
-			CloseFile(stream)
+			BufCloseFile(stream)
 			
 		ElseIf file$="" Then
 			Exit

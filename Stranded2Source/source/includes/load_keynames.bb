@@ -1,12 +1,12 @@
 ;############################################ LOAD KEYNAMES
 
 Function load_keynames()
-	Local stream=ReadFile("sys\keys.inf")
+	Local stream=BufReadFile("sys\keys.inf")
 	If stream=0 Then RuntimeError("Unable to read sys\keys.inf")
 	Local in$,var$,val$
 	Local i,equal
-	While Not Eof(stream)
-		in$=ReadLine(stream)
+	While Not BufEof(stream)
+		in$=BufReadLine(stream)
 		equal=Instr(in$,"=")
 		If Left(in$,1)="#" Then equal=0
 		If equal>0 Then
@@ -31,7 +31,7 @@ Function load_keynames()
 			EndIf
 		EndIf
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 	in_keyname$(0)="-"
 End Function
 

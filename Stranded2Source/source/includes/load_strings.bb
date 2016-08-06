@@ -5,12 +5,12 @@ Dim sm$(250)
 Dim se$(300)
 
 Function load_strings()
-	Local stream=ReadFile("sys\strings.inf")
+	Local stream=BufReadFile("sys\strings.inf")
 	If stream=0 Then RuntimeError("Unable to read sys\strings.inf")
 	Local in$,var$,val$
 	Local i,equal
-	While Not Eof(stream)
-		in$=ReadLine(stream)
+	While Not BufEof(stream)
+		in$=BufReadLine(stream)
 		equal=Instr(in$,"=")
 		If Left(in$,1)="#" Then equal=0
 		If equal>0 Then
@@ -39,7 +39,7 @@ Function load_strings()
 			End Select
 		EndIf
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 End Function
 
 load_strings()

@@ -10,12 +10,12 @@ Function load_res(path$,typ,mode=1)
 		If dot=0 Then Return 0
 		path$=Left(path$,dot-1)+".inf"
 		If FileType(path$)=1 Then
-			Local stream=ReadFile(path$)
+			Local stream=BufReadFile(path$)
 			Local in$
 			If stream<>0 Then
-				in$=ReadLine(stream)
+				in$=BufReadLine(stream)
 				path$=path$(path$)+Trim(in$)
-				CloseFile(stream)
+				BufCloseFile(stream)
 			Else
 				con_add("ERROR: Unable to read Resource Link from "+path$,Cbmpf_red)
 				Return 0

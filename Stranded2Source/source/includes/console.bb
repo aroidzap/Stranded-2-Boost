@@ -240,12 +240,12 @@ Function con_save()
 	name$="CON_D_"+CurrentDate()+"_T_"+CurrentTime()+".txt"
 	name$=Replace(name$," ","_")
 	name$=Replace(name$,":","_")
-	stream=WriteFile(name$)
+	stream=BufWriteFile(name$)
 	If stream<>0 Then
 		For Tcon.Tcon=Each Tcon
-			WriteLine(stream,Tcon\txt$)
+			BufWriteLine(stream,Tcon\txt$)
 		Next
-		CloseFile(stream)
+		BufCloseFile(stream)
 		con_add("Console output saved to '"+name$+"'",Cbmpf_green)
 	Else
 		con_add("ERROR: Unable to save console output to '"+name$+"'",Cbmpf_red)

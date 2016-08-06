@@ -4,7 +4,7 @@
 Function load_settings()
 	;Controls
 	Dim in_keys(20)
-	Local stream=ReadFile("sys\controls.cfg")
+	Local stream=BufReadFile("sys\controls.cfg")
 	If stream=0 Then
 		;Failed? Set Defaults!
 		set_msens#=0.2
@@ -12,27 +12,27 @@ Function load_settings()
 		set_msmooth=0
 	Else
 		;Load
-		ReadLine(stream)
+		BufReadLine(stream)
 		For i=0 To 20
-			in_keys(i)=ReadShort(stream)
+			in_keys(i)=BufReadShort(stream)
 		Next
-		set_msens#=ReadFloat(stream)
-		set_minvert=ReadByte(stream)-128
-		set_msmooth=ReadByte(stream)
-		CloseFile(stream)
+		set_msens#=BufReadFloat(stream)
+		set_minvert=BufReadByte(stream)-128
+		set_msmooth=BufReadByte(stream)
+		BufCloseFile(stream)
 	EndIf
 	;Scriptcontrols
 	Dim game_scriptkey(20)
-	stream=ReadFile("sys\scriptcontrols.cfg")
+	stream=BufReadFile("sys\scriptcontrols.cfg")
 	If stream<>0 Then
-		ReadLine(stream)
+		BufReadLine(stream)
 		For i=0 To 20
-			game_scriptkey(i)=ReadShort(stream)
+			game_scriptkey(i)=BufReadShort(stream)
 		Next
-		CloseFile(stream)
+		BufCloseFile(stream)
 	EndIf
 	;Settings
-	stream=ReadFile("sys\settings.cfg")
+	stream=BufReadFile("sys\settings.cfg")
 	If stream=0 Then
 		;Failed? Set Defaults!
 		set_scrx=800
@@ -43,28 +43,28 @@ Function load_settings()
 		set_mb_alpha#=0.35
 	Else
 		;Load
-		ReadLine(stream)
-		set_scrx=ReadLine(stream):set_scrx_c=set_scrx
-		set_scry=ReadLine(stream):set_scry_c=set_scry
-		set_scrbit=ReadLine(stream):set_scrbit_c=set_scrbit
-		set_viewrange=ReadLine(stream)
-		set_terrain=ReadLine(stream)
-		set_water=ReadLine(stream)
-		set_sky=ReadLine(stream)
-		set_effects=ReadLine(stream)
-		set_musicvolume#=ReadLine(stream)
-		set_fxvolume#=ReadLine(stream)
-		set_grass=ReadLine(stream)
-		set_2dfx=ReadLine(stream)
-		set_lightfx=ReadLine(stream)
-		set_windsway=ReadLine(stream)
-		set_name$=ReadLine(stream)
-		set_serverport=ReadLine(stream)
-		set_fog=ReadLine(stream)
-		set_hwmultitex=ReadLine(stream)
-		set_mb=ReadLine(stream)
-		set_mb_alpha#=ReadLine(stream)
-		CloseFile(stream)
+		BufReadLine(stream)
+		set_scrx=BufReadLine(stream):set_scrx_c=set_scrx
+		set_scry=BufReadLine(stream):set_scry_c=set_scry
+		set_scrbit=BufReadLine(stream):set_scrbit_c=set_scrbit
+		set_viewrange=BufReadLine(stream)
+		set_terrain=BufReadLine(stream)
+		set_water=BufReadLine(stream)
+		set_sky=BufReadLine(stream)
+		set_effects=BufReadLine(stream)
+		set_musicvolume#=BufReadLine(stream)
+		set_fxvolume#=BufReadLine(stream)
+		set_grass=BufReadLine(stream)
+		set_2dfx=BufReadLine(stream)
+		set_lightfx=BufReadLine(stream)
+		set_windsway=BufReadLine(stream)
+		set_name$=BufReadLine(stream)
+		set_serverport=BufReadLine(stream)
+		set_fog=BufReadLine(stream)
+		set_hwmultitex=BufReadLine(stream)
+		set_mb=BufReadLine(stream)
+		set_mb_alpha#=BufReadLine(stream)
+		BufCloseFile(stream)
 	EndIf
 	
 	;Setup
@@ -93,52 +93,52 @@ load_settings()
 ;### Save Settings
 Function save_settings()
 	;Controls
-	Local stream=WriteFile("sys\controls.cfg")
+	Local stream=BufWriteFile("sys\controls.cfg")
 	If stream=0 Then RuntimeError("Unable to write sys\controls.cfg")
-	WriteLine(stream,"### "+set_moddir$+" Control Settings (Warning: Editing this File may cause Errors)")
+	BufWriteLine(stream,"### "+set_moddir$+" Control Settings (Warning: Editing this File may cause Errors)")
 	For i=0 To 20
-		WriteShort(stream,in_keys(i))
+		BufWriteShort(stream,in_keys(i))
 	Next
-	WriteFloat(stream,set_msens#)
-	WriteByte(stream,set_minvert+128)
-	WriteByte(stream,set_msmooth)
-	CloseFile(stream)
+	BufWriteFloat(stream,set_msens#)
+	BufWriteByte(stream,set_minvert+128)
+	BufWriteByte(stream,set_msmooth)
+	BufCloseFile(stream)
 	;Scriptcontrols
 	If game_scriptkeys>0 Then
-		stream=WriteFile("sys\scriptcontrols.cfg")
+		stream=BufWriteFile("sys\scriptcontrols.cfg")
 		If stream=0 Then RuntimeError("Unable to write sys\scriptcontrols.cfg")
-		WriteLine(stream,"### "+set_moddir$+" Script Control Settings (Warning: Editing this File may cause Errors)")
+		BufWriteLine(stream,"### "+set_moddir$+" Script Control Settings (Warning: Editing this File may cause Errors)")
 		For i=0 To 20
-			WriteShort(stream,game_scriptkey(i))
+			BufWriteShort(stream,game_scriptkey(i))
 		Next
-		CloseFile(stream)
+		BufCloseFile(stream)
 	EndIf
 	;Settings
-	stream=WriteFile("sys\settings.cfg")
+	stream=BufWriteFile("sys\settings.cfg")
 	If stream=0 Then RuntimeError("Unable to write sys\settings.cfg")
-	WriteLine(stream,"### "+set_moddir$+" Settings (Warning: Editing this File may cause Errors)")
-	WriteLine(stream,set_scrx_c)
-	WriteLine(stream,set_scry_c)
-	WriteLine(stream,set_scrbit_c)
-	WriteLine(stream,set_viewrange)
-	WriteLine(stream,set_terrain)
-	WriteLine(stream,set_water)
-	WriteLine(stream,set_sky)
-	WriteLine(stream,set_effects)
-	WriteLine(stream,set_musicvolume#)
-	WriteLine(stream,set_fxvolume#)
-	WriteLine(stream,set_grass)
-	WriteLine(stream,set_2dfx)
-	WriteLine(stream,set_lightfx)
-	WriteLine(stream,set_windsway)
+	BufWriteLine(stream,"### "+set_moddir$+" Settings (Warning: Editing this File may cause Errors)")
+	BufWriteLine(stream,set_scrx_c)
+	BufWriteLine(stream,set_scry_c)
+	BufWriteLine(stream,set_scrbit_c)
+	BufWriteLine(stream,set_viewrange)
+	BufWriteLine(stream,set_terrain)
+	BufWriteLine(stream,set_water)
+	BufWriteLine(stream,set_sky)
+	BufWriteLine(stream,set_effects)
+	BufWriteLine(stream,set_musicvolume#)
+	BufWriteLine(stream,set_fxvolume#)
+	BufWriteLine(stream,set_grass)
+	BufWriteLine(stream,set_2dfx)
+	BufWriteLine(stream,set_lightfx)
+	BufWriteLine(stream,set_windsway)
 	set_name$=mp_checkname(set_name$,0)
-	WriteLine(stream,set_name$)
-	WriteLine(stream,set_serverport)
-	WriteLine(stream,set_fog)
-	WriteLine(stream,set_hwmultitex)
-	WriteLine(stream,set_mb)
-	WriteLine(stream,set_mb_alpha#)
-	CloseFile(stream)
+	BufWriteLine(stream,set_name$)
+	BufWriteLine(stream,set_serverport)
+	BufWriteLine(stream,set_fog)
+	BufWriteLine(stream,set_hwmultitex)
+	BufWriteLine(stream,set_mb)
+	BufWriteLine(stream,set_mb_alpha#)
+	BufCloseFile(stream)
 	
 	;Setup
 	

@@ -627,30 +627,30 @@ End Function
 
 ;### Textbox Loadfile
 Function gui_tb_loadfile(file$)
-	stream=ReadFile(file$)
+	stream=BufReadFile(file$)
 	If stream=0 Then Return 0
 	For Ttbt.Ttbt=Each Ttbt
 		Delete Ttbt
 	Next
-	While Not Eof(stream)
+	While Not BufEof(stream)
 		Ttbt.Ttbt=New Ttbt
-		Ttbt\txt$=ReadLine(stream)
+		Ttbt\txt$=BufReadLine(stream)
 		Ttbt\txt$=Replace(Ttbt\txt$,Chr(9),"   ")
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 	Return 1
 End Function
 
 
 ;### Textbox Savefile
 Function gui_tb_savefile(file$)
-	stream=WriteFile(file$)
+	stream=BufWriteFile(file$)
 	If stream=0 Then Return 0
 	For Ttbt.Ttbt=Each Ttbt
 		txt$=Replace(Ttbt\txt$,"   ",Chr(9))
-		WriteLine stream,txt$
+		BufWriteLine stream,txt$
 	Next
-	CloseFile(stream)
+	BufCloseFile(stream)
 	Return 1
 End Function
 

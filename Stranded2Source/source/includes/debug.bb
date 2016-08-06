@@ -138,13 +138,13 @@ End Function
 Function dlog(txt$)
 	Local stream
 	If FileType(set_rootdir$+"debug.txt")<>1 Then
-		stream=WriteFile(set_rootdir$+"debug.txt")
+		stream=BufWriteFile(set_rootdir$+"debug.txt")
 	Else
-		stream=OpenFile(set_rootdir$+"debug.txt")
+		stream=BufOpenFile(set_rootdir$+"debug.txt")
 	EndIf
 	If stream<>0 Then
-		WriteLine stream,txt$
-		CloseFile stream
+		BufWriteLine stream,txt$
+		BufCloseFile stream
 	EndIf
 End Function
 

@@ -76,22 +76,22 @@ Function load_progress_get()
 	load_units_c=255
 	load_items_c=255
 	If FileType("sys\load.cache")=1 Then
-		Local stream=ReadFile("sys\load.cache")
+		Local stream=BufReadFile("sys\load.cache")
 		If stream<>0 Then
-			load_objects_c=ReadShort(stream)
-			load_units_c=ReadShort(stream)
-			load_items_c=ReadShort(stream)
-			CloseFile(stream)
+			load_objects_c=BufReadShort(stream)
+			load_units_c=BufReadShort(stream)
+			load_items_c=BufReadShort(stream)
+			BufCloseFile(stream)
 		EndIf
 	EndIf
 End Function
 
 Function load_progress_set()
-	Local stream=WriteFile("sys\load.cache")
+	Local stream=BufWriteFile("sys\load.cache")
 	If stream<>0 Then
-		WriteShort stream,object_count
-		WriteShort stream,unit_count
-		WriteShort stream,item_count
-		CloseFile(stream)
+		BufWriteShort stream,object_count
+		BufWriteShort stream,unit_count
+		BufWriteShort stream,item_count
+		BufCloseFile(stream)
 	EndIf
 End Function

@@ -121,11 +121,18 @@ BBDECL char* BBCALL BufReadString(int handle) {
 }
 // BufReadLine$(handle%):"_BufReadLine@4"
 BBDECL char* BBCALL BufReadLine(int handle) {
+	FILE *f = reinterpret_cast<FILE *>(handle);
 	static char buf[BUFFER_SIZE];
 	char *p = buf;
 	int c;
-	while ((c = fgetc(reinterpret_cast<FILE *>(handle))) != EOF) {
-		if (c == 0x0a || c == 0x0d) { break; }
+	while ((c = fgetc(f)) != EOF) {
+		if (c == 0x0a) { break; }
+		if (c == 0x0d) { 
+			if (!(fgetc(f) == 0x0a)) {
+				fseek(f, -1, SEEK_CUR);
+			}
+			break;
+		}
 		*p = static_cast<char>(c);
 		p++;
 	}

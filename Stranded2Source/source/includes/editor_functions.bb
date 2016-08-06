@@ -94,10 +94,10 @@ Function editor_ini_sc()
 		Delete Tsc
 	Next
 	Local in$,matchpos,match$
-	Local stream=ReadFile(set_rootdir$+"core\scriptcommands.inf")
+	Local stream=BufReadFile(set_rootdir$+"core\scriptcommands.inf")
 	If stream<>0 Then
-		While Not Eof(stream)
-			in$=ReadLine(stream)
+		While Not BufEof(stream)
+			in$=BufReadLine(stream)
 			in$=Trim(in$)
 			If in$<>"" Then
 				split$(in$,"�",3)
@@ -107,7 +107,7 @@ Function editor_ini_sc()
 				Tsc\params$=splits$(2)
 			EndIf
 		Wend
-		CloseFile(stream)
+		BufCloseFile(stream)
 	Else
 		con_add("ERROR: Unable to load 'core\scriptcommands.inf'",Cbmpf_red)
 	EndIf

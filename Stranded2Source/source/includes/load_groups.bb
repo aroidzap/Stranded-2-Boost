@@ -1,12 +1,12 @@
 ;############################################ Load Groups
 
 Function load_groups()
-	Local stream=ReadFile("sys\groups.inf")
+	Local stream=BufReadFile("sys\groups.inf")
 	If stream=0 Then Return 0
 	Local in$,var$,val$
 	Local i,equal
-	While Not Eof(stream)
-		in$=ReadLine(stream)
+	While Not BufEof(stream)
+		in$=BufReadLine(stream)
 		equal=Instr(in$,"=")
 		If Left(in$,1)="#" Then equal=0
 		If equal>0 Then
@@ -26,7 +26,7 @@ Function load_groups()
 			End Select
 		EndIf
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 End Function
 
 load_groups()

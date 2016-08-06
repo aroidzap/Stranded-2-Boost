@@ -420,18 +420,18 @@ End Function
 
 ;### Var Cache Save
 Function var_cache_save(file$,varlist$="-")
-	Local stream=WriteFile(file$)
+	Local stream=BufWriteFile(file$)
 	If stream<>0 Then
 		;All
 		If varlist$="-" Then
 			For Tx.Tx=Each Tx
 				If Tx\mode=1 Then
 					;con_add("save "+Tx\key$)
-					WriteString stream,code$(Tx\key$,5,0)
-					WriteString stream,code$(Tx\value$,7,0)
+					BufWriteString stream,code$(Tx\key$,5,0)
+					BufWriteString stream,code$(Tx\value$,7,0)
 				EndIf
 			Next
-			CloseFile(stream)
+			BufCloseFile(stream)
 			Return 1
 		;Special
 		Else
@@ -441,12 +441,12 @@ Function var_cache_save(file$,varlist$="-")
 				If Tx\mode=1 Then
 					If Instr(varlist$,","+Tx\key$+",")>0 Then
 						;con_add("save "+Tx\key$)
-						WriteString stream,code$(Tx\key$,5,0)
-						WriteString stream,code$(Tx\value$,7,0)
+						BufWriteString stream,code$(Tx\key$,5,0)
+						BufWriteString stream,code$(Tx\value$,7,0)
 					EndIf
 				EndIf
 			Next
-			CloseFile(stream)
+			BufCloseFile(stream)
 			Return 1
 		EndIf
 	Else
@@ -457,17 +457,17 @@ End Function
 
 ;### Var Cache Load
 Function var_cache_load(file$)
-	Local stream=ReadFile(file$)
+	Local stream=BufReadFile(file$)
 	Local var$,value$
 	If stream<>0 Then
-		While Not Eof(stream)
-			var$=ReadString(stream)
+		While Not BufEof(stream)
+			var$=BufReadString(stream)
 			var$=code$(var$,5,1)
-			value$=ReadString(stream)
+			value$=BufReadString(stream)
 			value$=code$(value$,7,1)
 			var_set(var$,value$)
 		Wend
-		CloseFile(stream)
+		BufCloseFile(stream)
 		Return 1
 	Else
 		Return 0

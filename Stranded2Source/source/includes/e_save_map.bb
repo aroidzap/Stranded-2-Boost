@@ -2,7 +2,7 @@
 
 ;### SAVE MAP
 Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_states=1,s_locks=1)
-	Local stream=WriteFile(path$)
+	Local stream=BufWriteFile(path$)
 	If stream=0 Then Return 0
 	
 	;Event: Presave
@@ -15,12 +15,12 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Main Header
 	bmpf_loadscreen(s$(10),10)
-	WriteLine(stream,"### Stranded II Mapfile �by Unreal Software 2004-2007")
-	WriteLine(stream,Cversion$)					;Version
-	WriteLine(stream,CurrentDate())				;Date
-	WriteLine(stream,CurrentTime())				;Time
-	WriteLine(stream,"default")					;Format
-	WriteLine(stream,mode$)						;Mode
+	BufWriteLine(stream,"### Stranded II Mapfile �by Unreal Software 2004-2007")
+	BufWriteLine(stream,Cversion$)					;Version
+	BufWriteLine(stream,CurrentDate())				;Date
+	BufWriteLine(stream,CurrentTime())				;Time
+	BufWriteLine(stream,"default")					;Format
+	BufWriteLine(stream,mode$)						;Mode
 	
 	;Type Format
 	Local tfobject=0
@@ -34,16 +34,16 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 		tfstring$=tfstring$+Str(tfobject)
 		tfstring$=tfstring$+Str(tfunit)
 		tfstring$=tfstring$+Str(tfitem)
-		WriteLine(stream,tfstring$)
+		BufWriteLine(stream,tfstring$)
 	Else
-		WriteLine(stream,"")
+		BufWriteLine(stream,"")
 	EndIf
 	
-	WriteLine(stream,"")
-	WriteLine(stream,"")
-	WriteLine(stream,"")
-	WriteLine(stream,"")
-	WriteLine(stream,"###")						;###
+	BufWriteLine(stream,"")
+	BufWriteLine(stream,"")
+	BufWriteLine(stream,"")
+	BufWriteLine(stream,"")
+	BufWriteLine(stream,"###")						;###
 	
 	;Image
 	save_map_image(mode$)
@@ -52,9 +52,9 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	For x=0 To 96-1
 		For y=0 To 72-1
 			rgb=ReadPixelFast(x,y)
-			WriteByte(stream,(rgb And $FF0000)/$10000)	;R
-			WriteByte(stream,(rgb And $FF00)/$100)		;G
-			WriteByte(stream,rgb And $FF)				;B
+			BufWriteByte(stream,(rgb And $FF0000)/$10000)	;R
+			BufWriteByte(stream,(rgb And $FF00)/$100)		;G
+			BufWriteByte(stream,rgb And $FF)				;B
 		Next
 	Next
 	UnlockBuffer ImageBuffer(map_image)
@@ -63,30 +63,30 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Password Header
 	Local pwkey=Rand(5,250)
-	WriteByte(stream,pwkey)						;Code Key
+	BufWriteByte(stream,pwkey)						;Code Key
 	encodedpw$=code(pw$,pwkey,0)
-	WriteLine(stream,encodedpw$)				;Password
+	BufWriteLine(stream,encodedpw$)				;Password
 	map_password$=pw$
 	
 	;Map Vars
-	WriteInt(stream,map_day)							;Map Time Day
-	WriteByte(stream,map_hour)							;Map Time Hour
-	WriteByte(stream,map_minute)						;Map Time Minute
-	WriteByte(stream,map_freezetime)					;Map Time frozen?
-	WriteString(stream,map_skybox$)						;Map Skybox
-	WriteByte(stream,map_multiplayer)					;Map Multiplayer
-	WriteByte(stream,map_climate)						;Map Climate
-	WriteString(stream,map_music$)						;Map Music
-	WriteString(stream,map_briefing$)					;Map Briefing
-	WriteByte(stream,map_fog(0))						;Map Fog R
-	WriteByte(stream,map_fog(1))						;Map Fog G
-	WriteByte(stream,map_fog(2))						;Map Fog B
-	WriteByte(stream,map_fog(3))						;Map Fog Mode
-	WriteByte(stream,0)									;Extended Stuff
+	BufWriteInt(stream,map_day)							;Map Time Day
+	BufWriteByte(stream,map_hour)							;Map Time Hour
+	BufWriteByte(stream,map_minute)						;Map Time Minute
+	BufWriteByte(stream,map_freezetime)					;Map Time frozen?
+	BufWriteString(stream,map_skybox$)						;Map Skybox
+	BufWriteByte(stream,map_multiplayer)					;Map Multiplayer
+	BufWriteByte(stream,map_climate)						;Map Climate
+	BufWriteString(stream,map_music$)						;Map Music
+	BufWriteString(stream,map_briefing$)					;Map Briefing
+	BufWriteByte(stream,map_fog(0))						;Map Fog R
+	BufWriteByte(stream,map_fog(1))						;Map Fog G
+	BufWriteByte(stream,map_fog(2))						;Map Fog B
+	BufWriteByte(stream,map_fog(3))						;Map Fog Mode
+	BufWriteByte(stream,0)									;Extended Stuff
 	
 	;Interface
 	For i=0 To 9
-		WriteString(stream,in_quickslot(i))				;Quickslot
+		BufWriteString(stream,in_quickslot(i))				;Quickslot
 	Next
 	
 	
@@ -95,15 +95,15 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	;Colormap
 	bmpf_loadscreen(s$(11),20)
 	h=TextureHeight(ter_tex_color)						;Colortexture Size
-	WriteInt(stream,h)
+	BufWriteInt(stream,h)
 	SetBuffer TextureBuffer(ter_tex_color)
 	LockBuffer TextureBuffer(ter_tex_color)
 	For x=0 To h-1
 		For y=0 To h-1
 			rgb=ReadPixelFast(x,y)
-			WriteByte(stream,(rgb And $FF0000)/$10000)	;R
-			WriteByte(stream,(rgb And $FF00)/$100)		;G
-			WriteByte(stream,rgb And $FF)				;B
+			BufWriteByte(stream,(rgb And $FF0000)/$10000)	;R
+			BufWriteByte(stream,(rgb And $FF00)/$100)		;G
+			BufWriteByte(stream,rgb And $FF)				;B
 		Next
 	Next
 	UnlockBuffer TextureBuffer(ter_tex_color)
@@ -112,10 +112,10 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Heightmap
 	bmpf_loadscreen(s$(12),30)
-	WriteInt(stream,ter_size)							;Terrain Size
+	BufWriteInt(stream,ter_size)							;Terrain Size
 	For x=0 To ter_size
 		For y=0 To ter_size
-			WriteFloat(stream,TerrainHeight(ter,x,y))	;Height
+			BufWriteFloat(stream,TerrainHeight(ter,x,y))	;Height
 		Next
 	Next
 	
@@ -123,7 +123,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	bmpf_loadscreen(s$(13),35)
 	For x=0 To h
 		For y=0 To h
-			WriteByte(stream,grass_rgb(x,y,3))			;Gras? 1/0
+			BufWriteByte(stream,grass_rgb(x,y,3))			;Gras? 1/0
 		Next
 	Next
 	
@@ -134,20 +134,20 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	bmpf_loadscreen(s$(14),40)
 	c=0
 	For Tobject.Tobject=Each Tobject:c=c+1:Next
-	WriteInt(stream,c)													;Count
+	BufWriteInt(stream,c)													;Count
 	For Tobject.Tobject=Each Tobject
-		WriteInt(stream,Tobject\id)										;ID
+		BufWriteInt(stream,Tobject\id)										;ID
 		If tfobject Then												;Typ
-			WriteShort(stream,Tobject\typ)
+			BufWriteShort(stream,Tobject\typ)
 		Else
-			WriteByte(stream,Tobject\typ)
+			BufWriteByte(stream,Tobject\typ)
 		EndIf
-		WriteFloat(stream,EntityX(Tobject\h))							;X
-		WriteFloat(stream,EntityZ(Tobject\h))							;Z
-		WriteFloat(stream,EntityYaw(Tobject\h))							;Yaw
-		WriteFloat(stream,Tobject\health#)								;Health
-		WriteFloat(stream,Tobject\health_max#)							;Health Max
-		WriteInt(stream,Tobject\daytimer)								;Daytimer
+		BufWriteFloat(stream,EntityX(Tobject\h))							;X
+		BufWriteFloat(stream,EntityZ(Tobject\h))							;Z
+		BufWriteFloat(stream,EntityYaw(Tobject\h))							;Yaw
+		BufWriteFloat(stream,Tobject\health#)								;Health
+		BufWriteFloat(stream,Tobject\health_max#)							;Health Max
+		BufWriteInt(stream,Tobject\daytimer)								;Daytimer
 	Next
 
 	;Unit
@@ -158,30 +158,30 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	For Tunit.Tunit=Each Tunit
 		If Tunit\id>=peak Then c=c+1
 	Next
-	WriteInt(stream,c)													;Count
+	BufWriteInt(stream,c)													;Count
 	For Tunit.Tunit=Each Tunit
 		If Tunit\id>=peak Then
 			If mode$="map" Then											;Cache AI Center
 				Tunit\ai_cx#=EntityX(Tunit\h)
 				Tunit\ai_cz#=EntityZ(Tunit\h)
 			EndIf
-			WriteInt(stream,Tunit\id)									;ID
+			BufWriteInt(stream,Tunit\id)									;ID
 			If tfunit Then												;Typ
-				WriteShort(stream,Tunit\typ)
+				BufWriteShort(stream,Tunit\typ)
 			Else
-				WriteByte(stream,Tunit\typ)
+				BufWriteByte(stream,Tunit\typ)
 			EndIf								
-			WriteFloat(stream,EntityX(Tunit\h))							;X
-			WriteFloat(stream,EntityY(Tunit\h))							;Y
-			WriteFloat(stream,EntityZ(Tunit\h))							;Z
-			WriteFloat(stream,EntityYaw(Tunit\h))						;Yaw
-			WriteFloat(stream,Tunit\health#)							;Health
-			WriteFloat(stream,Tunit\health_max#)						;Health Max
-			WriteFloat(stream,Tunit\hunger#)							;Hunger
-			WriteFloat(stream,Tunit\thirst#)							;Thirst
-			WriteFloat(stream,Tunit\exhaustion#)						;Exhaustion
-			WriteFloat(stream,Tunit\ai_cx#)								;AI Center X
-			WriteFloat(stream,Tunit\ai_cz#)								;AI Center Z
+			BufWriteFloat(stream,EntityX(Tunit\h))							;X
+			BufWriteFloat(stream,EntityY(Tunit\h))							;Y
+			BufWriteFloat(stream,EntityZ(Tunit\h))							;Z
+			BufWriteFloat(stream,EntityYaw(Tunit\h))						;Yaw
+			BufWriteFloat(stream,Tunit\health#)							;Health
+			BufWriteFloat(stream,Tunit\health_max#)						;Health Max
+			BufWriteFloat(stream,Tunit\hunger#)							;Hunger
+			BufWriteFloat(stream,Tunit\thirst#)							;Thirst
+			BufWriteFloat(stream,Tunit\exhaustion#)						;Exhaustion
+			BufWriteFloat(stream,Tunit\ai_cx#)								;AI Center X
+			BufWriteFloat(stream,Tunit\ai_cz#)								;AI Center Z
 		EndIf
 	Next
 	
@@ -190,23 +190,23 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	If s_items=1 Then
 		c=0
 		For Titem.Titem=Each Titem:c=c+1:Next
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Titem.Titem=Each Titem
-			WriteInt(stream,Titem\id)										;ID
+			BufWriteInt(stream,Titem\id)										;ID
 			If tfitem Then													;Typ
-				WriteShort(stream,Titem\typ)
+				BufWriteShort(stream,Titem\typ)
 			Else
-				WriteByte(stream,Titem\typ)
+				BufWriteByte(stream,Titem\typ)
 			EndIf
-			WriteFloat(stream,EntityX(Titem\h))								;X
-			WriteFloat(stream,EntityY(Titem\h))								;Y
-			WriteFloat(stream,EntityZ(Titem\h))								;Z
-			WriteFloat(stream,EntityYaw(Titem\h))							;Yaw
-			WriteFloat(stream,Titem\health#)								;Health
-			WriteInt(stream,Titem\count)									;Count
-			WriteByte(stream,Titem\parent_class)							;Parent Class
-			WriteByte(stream,Titem\parent_mode)								;Parent Mode
-			WriteInt(stream,Titem\parent_id)								;Parent ID
+			BufWriteFloat(stream,EntityX(Titem\h))								;X
+			BufWriteFloat(stream,EntityY(Titem\h))								;Y
+			BufWriteFloat(stream,EntityZ(Titem\h))								;Z
+			BufWriteFloat(stream,EntityYaw(Titem\h))							;Yaw
+			BufWriteFloat(stream,Titem\health#)								;Health
+			BufWriteInt(stream,Titem\count)									;Count
+			BufWriteByte(stream,Titem\parent_class)							;Parent Class
+			BufWriteByte(stream,Titem\parent_mode)								;Parent Mode
+			BufWriteInt(stream,Titem\parent_id)								;Parent ID
 		Next
 	Else
 		c=0
@@ -215,24 +215,24 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 				c=c+1
 			EndIf
 		Next
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Titem.Titem=Each Titem
 			If Titem\parent_class<>Cclass_unit Or Titem\parent_id<>1 Then
-				WriteInt(stream,Titem\id)									;ID
+				BufWriteInt(stream,Titem\id)									;ID
 				If tfitem Then												;Typ
-					WriteShort(stream,Titem\typ)
+					BufWriteShort(stream,Titem\typ)
 				Else
-					WriteByte(stream,Titem\typ)
+					BufWriteByte(stream,Titem\typ)
 				EndIf
-				WriteFloat(stream,EntityX(Titem\h))							;X
-				WriteFloat(stream,EntityY(Titem\h))							;Y
-				WriteFloat(stream,EntityZ(Titem\h))							;Z
-				WriteFloat(stream,EntityYaw(Titem\h))						;Yaw
-				WriteFloat(stream,Titem\health#)							;Health
-				WriteInt(stream,Titem\count)								;Count
-				WriteByte(stream,Titem\parent_class)						;Parent Class
-				WriteByte(stream,Titem\parent_mode)							;Parent Mode
-				WriteInt(stream,Titem\parent_id)							;Parent ID
+				BufWriteFloat(stream,EntityX(Titem\h))							;X
+				BufWriteFloat(stream,EntityY(Titem\h))							;Y
+				BufWriteFloat(stream,EntityZ(Titem\h))							;Z
+				BufWriteFloat(stream,EntityYaw(Titem\h))						;Yaw
+				BufWriteFloat(stream,Titem\health#)							;Health
+				BufWriteInt(stream,Titem\count)								;Count
+				BufWriteByte(stream,Titem\parent_class)						;Parent Class
+				BufWriteByte(stream,Titem\parent_mode)							;Parent Mode
+				BufWriteInt(stream,Titem\parent_id)							;Parent ID
 			EndIf
 		Next		
 	EndIf
@@ -241,16 +241,16 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	bmpf_loadscreen(s$(17),90)
 	c=0
 	For Tinfo.Tinfo=Each Tinfo:c=c+1:Next								
-	WriteInt(stream,c)														;Count
+	BufWriteInt(stream,c)														;Count
 	For Tinfo.Tinfo=Each Tinfo
-		WriteInt(stream,Tinfo\id)											;ID
-		WriteByte(stream,Tinfo\typ)											;Typ
-		WriteFloat(stream,EntityX(Tinfo\h))									;X
-		WriteFloat(stream,EntityY(Tinfo\h))									;Y
-		WriteFloat(stream,EntityZ(Tinfo\h))									;Z
-		WriteFloat(stream,EntityPitch(Tinfo\h))								;Pitch
-		WriteFloat(stream,EntityYaw(Tinfo\h))								;Yaw
-		WriteString(stream,Tinfo\vars$)										;Vars
+		BufWriteInt(stream,Tinfo\id)											;ID
+		BufWriteByte(stream,Tinfo\typ)											;Typ
+		BufWriteFloat(stream,EntityX(Tinfo\h))									;X
+		BufWriteFloat(stream,EntityY(Tinfo\h))									;Y
+		BufWriteFloat(stream,EntityZ(Tinfo\h))									;Z
+		BufWriteFloat(stream,EntityPitch(Tinfo\h))								;Pitch
+		BufWriteFloat(stream,EntityYaw(Tinfo\h))								;Yaw
+		BufWriteString(stream,Tinfo\vars$)										;Vars
 	Next
 	
 	;State
@@ -258,20 +258,20 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	If s_states=1 Then
 		c=0
 		For Tstate.Tstate=Each Tstate:c=c+1:Next							
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Tstate.Tstate=Each Tstate
-			WriteByte(stream,Tstate\typ)									;Typ
-			WriteByte(stream,Tstate\parent_class)							;Parent Class
-			WriteInt(stream,Tstate\parent_id)								;Parent ID
-			WriteFloat(stream,Tstate\x#)									;X
-			WriteFloat(stream,Tstate\y#)									;Y
-			WriteFloat(stream,Tstate\z#)									;Z
-			WriteFloat(stream,Tstate\fx#)									;FX
-			WriteFloat(stream,Tstate\fy#)									;FY
-			WriteFloat(stream,Tstate\fz#)									;FZ
-			WriteInt(stream,Tstate\value)									;Value
-			WriteFloat(stream,Tstate\value_f#)								;Value Float
-			WriteString(stream,Tstate\value_s$)								;Value String
+			BufWriteByte(stream,Tstate\typ)									;Typ
+			BufWriteByte(stream,Tstate\parent_class)							;Parent Class
+			BufWriteInt(stream,Tstate\parent_id)								;Parent ID
+			BufWriteFloat(stream,Tstate\x#)									;X
+			BufWriteFloat(stream,Tstate\y#)									;Y
+			BufWriteFloat(stream,Tstate\z#)									;Z
+			BufWriteFloat(stream,Tstate\fx#)									;FX
+			BufWriteFloat(stream,Tstate\fy#)									;FY
+			BufWriteFloat(stream,Tstate\fz#)									;FZ
+			BufWriteInt(stream,Tstate\value)									;Value
+			BufWriteFloat(stream,Tstate\value_f#)								;Value Float
+			BufWriteString(stream,Tstate\value_s$)								;Value String
 		Next
 	Else
 		c=0
@@ -280,21 +280,21 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 				c=c+1
 			EndIf
 		Next
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Tstate.Tstate=Each Tstate
 			If Tstate\parent_class<>Cclass_unit Or Tstate\parent_id<>1 Then
-				WriteByte(stream,Tstate\typ)								;Typ
-				WriteByte(stream,Tstate\parent_class)						;Parent Class
-				WriteInt(stream,Tstate\parent_id)							;Parent ID
-				WriteFloat(stream,Tstate\x#)								;X
-				WriteFloat(stream,Tstate\y#)								;Y
-				WriteFloat(stream,Tstate\z#)								;Z
-				WriteFloat(stream,Tstate\fx#)								;FX
-				WriteFloat(stream,Tstate\fy#)								;FY
-				WriteFloat(stream,Tstate\fz#)								;FZ
-				WriteInt(stream,Tstate\value)								;Value
-				WriteFloat(stream,Tstate\value_f#)							;Value Float
-				WriteString(stream,Tstate\value_s$)							;Value String
+				BufWriteByte(stream,Tstate\typ)								;Typ
+				BufWriteByte(stream,Tstate\parent_class)						;Parent Class
+				BufWriteInt(stream,Tstate\parent_id)							;Parent ID
+				BufWriteFloat(stream,Tstate\x#)								;X
+				BufWriteFloat(stream,Tstate\y#)								;Y
+				BufWriteFloat(stream,Tstate\z#)								;Z
+				BufWriteFloat(stream,Tstate\fx#)								;FX
+				BufWriteFloat(stream,Tstate\fy#)								;FY
+				BufWriteFloat(stream,Tstate\fz#)								;FZ
+				BufWriteInt(stream,Tstate\value)								;Value
+				BufWriteFloat(stream,Tstate\value_f#)							;Value Float
+				BufWriteString(stream,Tstate\value_s$)							;Value String
 			EndIf
 		Next		
 	EndIf
@@ -312,19 +312,19 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	;Save
 	If s_skills+s_vars+s_diary+s_locks=4 Then
 		For Tx.Tx=Each Tx:c=c+1:Next
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Tx.Tx=Each Tx
-			WriteByte(stream,Tx\typ)										;Typ
-			WriteByte(stream,Tx\parent_class)								;Parent Class
-			WriteInt(stream,Tx\parent_id)									;Parent ID
-			WriteInt(stream,Tx\mode)										;Mode
+			BufWriteByte(stream,Tx\typ)										;Typ
+			BufWriteByte(stream,Tx\parent_class)								;Parent Class
+			BufWriteInt(stream,Tx\parent_id)									;Parent ID
+			BufWriteInt(stream,Tx\mode)										;Mode
 			If Tx\mode=0 Then												;Key (dont save script keys)
-				WriteString(stream,"")
+				BufWriteString(stream,"")
 			Else
-				WriteString(stream,Tx\key$)
+				BufWriteString(stream,Tx\key$)
 			EndIf
-			WriteString(stream,Tx\value$)									;Value
-			WriteString(stream,Tx\stuff$)									;Stuff
+			BufWriteString(stream,Tx\value$)									;Value
+			BufWriteString(stream,Tx\stuff$)									;Stuff
 			If Tx\mode=6 Then Delete Tx
 		Next
 	Else
@@ -336,7 +336,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 			If s_locks=0 And Tx\mode=3 Then ds=0
 			If ds=1 Then c=c+1
 		Next
-		WriteInt(stream,c)													;Count
+		BufWriteInt(stream,c)													;Count
 		For Tx.Tx=Each Tx
 			ds=1
 			If s_skills=0 And Tx\mode=5 Then ds=0
@@ -344,17 +344,17 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 			If s_diary=0 And Tx\mode=2 Then ds=0
 			If s_locks=0 And Tx\mode=3 Then ds=0
 			If ds=1 Then
-				WriteByte(stream,Tx\typ)									;Typ
-				WriteByte(stream,Tx\parent_class)							;Parent Class
-				WriteInt(stream,Tx\parent_id)								;Parent ID
-				WriteInt(stream,Tx\mode)									;Mode
+				BufWriteByte(stream,Tx\typ)									;Typ
+				BufWriteByte(stream,Tx\parent_class)							;Parent Class
+				BufWriteInt(stream,Tx\parent_id)								;Parent ID
+				BufWriteInt(stream,Tx\mode)									;Mode
 				If Tx\mode=0 Then											;Key (dont save script keys)
-					WriteString(stream,"")
+					BufWriteString(stream,"")
 				Else
-					WriteString(stream,Tx\key$)
+					BufWriteString(stream,Tx\key$)
 				EndIf
-				WriteString(stream,Tx\value$)								;Value
-				WriteString(stream,Tx\stuff$)								;Stuff
+				BufWriteString(stream,Tx\value$)								;Value
+				BufWriteString(stream,Tx\stuff$)								;Stuff
 				If Tx\mode=6 Then Delete Tx
 			EndIf
 		Next		
@@ -362,32 +362,32 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Save Cam Angels (sav) + Player Position
 	If mode$="sav" Then
-		WriteFloat(stream,EntityPitch(cam))
-		WriteFloat(stream,EntityYaw(cam))
+		BufWriteFloat(stream,EntityPitch(cam))
+		BufWriteFloat(stream,EntityYaw(cam))
 	EndIf
 	
 	
 	;### End
 	bmpf_loadscreen(s$(20),100)
 	con_add("")
-	WriteLine(stream,"")
-	WriteLine(stream,"### EOF Map File")
-	WriteLine(stream,"www.unrealsoftware.de")
+	BufWriteLine(stream,"")
+	BufWriteLine(stream,"### EOF Map File")
+	BufWriteLine(stream,"www.unrealsoftware.de")
 	
 	;Attachments
 	If mode$="map" Then
 		For Tat.Tat=Each Tat
 			If FileType(set_rootdir$+"mods\"+set_moddir$+"\"+Tat\path$)=1 Then
-				atstream=ReadFile(set_rootdir$+"mods\"+set_moddir$+"\"+Tat\path$)
+				atstream=BufReadFile(set_rootdir$+"mods\"+set_moddir$+"\"+Tat\path$)
 				If atstream<>0 Then
-					WriteLine(stream,strinv$(Tat\path$))
-					WriteInt(stream,FileSize(set_rootdir$+"mods\"+set_moddir$+"\"+Tat\path$))
-					While Not Eof(atstream)
-						byte=ReadByte(atstream)
+					BufWriteLine(stream,strinv$(Tat\path$))
+					BufWriteInt(stream,BufFileSize(set_rootdir$+"mods\"+set_moddir$+"\"+Tat\path$))
+					While Not BufEof(atstream)
+						byte=BufReadByte(atstream)
 						byte=255-byte
-						WriteByte(stream,byte)
+						BufWriteByte(stream,byte)
 					Wend
-					CloseFile(atstream)
+					BufCloseFile(atstream)
 					atstream=0
 				EndIf
 			EndIf
@@ -398,7 +398,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	If m_section<>Csection_editor Then parse_globalevent("postsave")
 	
 	;Finish
-	CloseFile(stream)
+	BufCloseFile(stream)
 	Return 1
 End Function
 

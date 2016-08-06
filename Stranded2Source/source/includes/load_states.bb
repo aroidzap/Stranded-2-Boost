@@ -23,12 +23,12 @@ Dstate_a(Cstate_speedmod)=1
 
 Function load_states()
 	state_count=0
-	Local stream=ReadFile("sys\states.inf")
+	Local stream=BufReadFile("sys\states.inf")
 	If stream=0 Then RuntimeError("Unable to read sys\states.inf")
 	Local in$,var$,val$
 	Local i,equal
-	While Not Eof(stream)
-		in$=ReadLine(stream)
+	While Not BufEof(stream)
+		in$=BufReadLine(stream)
 		equal=Instr(in$,"=")
 		If Left(in$,1)="#" Then equal=0
 		If equal>0 Then
@@ -59,8 +59,8 @@ Function load_states()
 				Case "script"
 					If i<29 Then RuntimeError("States from 1-29 are fixed states which cannot have a script")
 					If val$="start" Then
-						While Not Eof(stream)
-							val$=ReadLine(stream)
+						While Not BufEof(stream)
+							val$=BufReadLine(stream)
 							If val$="script=end" Then
 								Exit
 							Else
@@ -74,7 +74,7 @@ Function load_states()
 			End Select
 		EndIf
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 End Function
 
 load_states()

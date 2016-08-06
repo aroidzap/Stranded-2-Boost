@@ -1140,7 +1140,7 @@ End Function
 Function parse_loadscript$(file$,getstartl=1,startl$="")
 	If Instr(file$,".")=0 Then Return file$
 	;con_add("loadscript "+file$)
-	stream=ReadFile(file$)
+	stream=BufReadFile(file$)
 	If stream=0 Then
 		If set_debug=1 Then con_add("ERROR: Unable to load external script '"+file$+"'",Cbmpf_red)
 		Return ""
@@ -1155,15 +1155,15 @@ Function parse_loadscript$(file$,getstartl=1,startl$="")
 	;con_add("loadscript "+file$+" - startl: "+startl$)
 	;Normal Read
 	If startl$="" Then
-		While Not Eof(stream)
-			txt$=txt$+ReadLine(stream)+"¦"
+		While Not BufEof(stream)
+			txt$=txt$+BufReadLine(stream)+"¦"
 		Wend
 	;Partial Read
 	Else
 		Local cacheit=0
 		Local in$
-		While Not Eof(stream)
-			in$=ReadLine(stream)
+		While Not BufEof(stream)
+			in$=BufReadLine(stream)
 			If cacheit=1 Then
 				If Left(in$,3)="//~" Then Exit
 				txt$=txt$+in$+"¦"
@@ -1177,7 +1177,7 @@ Function parse_loadscript$(file$,getstartl=1,startl$="")
 		txt$=Left(txt$,Len(txt$)-1)
 	EndIf
 	;Close
-	CloseFile stream
+	BufCloseFile stream
 	;con_add("loadscript txt: "+txt$)
 	Return txt$
 End Function

@@ -1547,7 +1547,7 @@ Function gui_win_command()
 				console()
 				Local tcp=OpenTCPStream("http://www.stranded.unrealsoftware.de",80)
 				CopyFile("..\..\core\scriptcommands.inf","..\..\core\scriptcommands.bkp")
-				Local stream=WriteFile("..\..\core\scriptcommands.inf")
+				Local stream=BufWriteFile("..\..\core\scriptcommands.inf")
 				Local loadedlines=0
 				If stream<>0 Then
 					If tcp Then
@@ -1577,7 +1577,7 @@ Function gui_win_command()
 							;Else
 								If Len(in$)>2 Then
 									If (Instr(in$,"�")>0) Then
-										WriteLine(stream,in$)
+										BufWriteLine(stream,in$)
 										split(in$,"�",1)
 										con_add("Loading '"+splits$(0)+"'...")
 										loadedlines=loadedlines+1
@@ -1598,7 +1598,7 @@ Function gui_win_command()
 					Else
 						con_add("ERROR: Failed to connect to Update Server",Cbmpf_red)
 					EndIf
-					CloseFile(stream)
+					BufCloseFile(stream)
 				Else
 					con_add("ERROR: Failed to write 'core\scriptcommands.inf'",Cbmpf_red)
 				EndIf

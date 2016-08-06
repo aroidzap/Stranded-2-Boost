@@ -7,12 +7,12 @@ Dim Dlightcycle(24,2)					;Lightcycle Array (0-23), 24 as cache for current colo
 
 Function load_lightcycle()
 	Dim Dlightcycle(24,2)
-	Local stream=ReadFile("sys\lightcycle.inf")
+	Local stream=BufReadFile("sys\lightcycle.inf")
 	If stream=0 Then RuntimeError("Unable to read sys\lightcycle.inf")
 	Local in$,var$,val$,varint
 	Local i,equal
-	While Not Eof(stream)
-		in$=ReadLine(stream)
+	While Not BufEof(stream)
+		in$=BufReadLine(stream)
 		equal=Instr(in$,"=")
 		If Left(in$,1)="#" Then equal=0
 		If equal>0 Then
@@ -29,7 +29,7 @@ Function load_lightcycle()
 			EndIf
 		EndIf
 	Wend
-	CloseFile(stream)
+	BufCloseFile(stream)
 End Function
 
 load_lightcycle()

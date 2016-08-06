@@ -274,33 +274,33 @@ End Function
 Function mod_check()
 	;Create new Mods file
 	If FileType(set_rootdir$+"core\mods.inf")=0 Then
-		stream=WriteFile(set_rootdir$+"core\mods.inf")
+		stream=BufWriteFile(set_rootdir$+"core\mods.inf")
 		If stream<>0 Then
-			WriteLine stream,"### List of 'installed' mods (besides Stranded II):"
-			CloseFile stream
+			BufWriteLine stream,"### List of 'installed' mods (besides Stranded II):"
+			BufCloseFile stream
 		EndIf
 	EndIf
 	;Check Mods file
 	If set_moddir$="Stranded II" Then Return
-	stream=ReadFile(set_rootdir$+"core\mods.inf")
+	stream=BufReadFile(set_rootdir$+"core\mods.inf")
 	If stream<>0 Then
 		found=0
-		While Not Eof(stream)
-			cmod$=ReadLine(stream)
+		While Not BufEof(stream)
+			cmod$=BufReadLine(stream)
 			If cmod$=set_moddir$ Then
 				found=1
 				Exit
 			EndIf
 		Wend
-		CloseFile stream
+		BufCloseFile stream
 		;Setup Mod
 		If found=0 Then
-			stream=OpenFile(set_rootdir$+"core\mods.inf")
-			size=FileSize(set_rootdir$+"core\mods.inf")
+			stream=BufOpenFile(set_rootdir$+"core\mods.inf")
+			size=BufFileSize(set_rootdir$+"core\mods.inf")
 			If stream<>0 Then
-				SeekFile stream,size
-				WriteLine stream,set_moddir$
-				CloseFile stream
+				BufSeekFile stream,size
+				BufWriteLine stream,set_moddir$
+				BufCloseFile stream
 			EndIf
 			mod_setup()
 		EndIf

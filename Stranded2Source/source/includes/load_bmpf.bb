@@ -42,16 +42,16 @@ Function bmpf_load_font(bmp$,bmpf$,id)
 	Local def,i,sign
 	If set_debug Then con_add("Loading Font: "+bmp$+" (Inf: "+bmpf+")")
 	;Definition laden
-	def=ReadFile(bmpf$)
+	def=BufReadFile(bmpf$)
 	If Not def Then RuntimeError("Unable to load Bitmapfont "+bmp$)
-	ReadLine(def)
-	bmpf_frames(id)=ReadShort(def)
-	bmpf_framesx(id)=ReadShort(def)
-	bmpf_framesy(id)=ReadShort(def)
+	BufReadLine(def)
+	bmpf_frames(id)=BufReadShort(def)
+	bmpf_framesx(id)=BufReadShort(def)
+	bmpf_framesy(id)=BufReadShort(def)
 	For i=1 To bmpf_frames(id)
-		sign=ReadByte(def)
+		sign=BufReadByte(def)
 		bmpf_framesc(sign,id)=i-1
-		bmpf_framesw(sign,id)=ReadShort(def)
+		bmpf_framesw(sign,id)=BufReadShort(def)
 	Next
 	;Image laden
 	bmpf_image(id)=LoadAnimImage(bmp$,bmpf_framesx(id),bmpf_framesy(id),0,bmpf_frames(id))

@@ -180,13 +180,13 @@ Function menu_set(menu,save=1)
 			For Ttbt.Ttbt=Each Ttbt
 				Delete Ttbt
 			Next
-			Local stream=ReadFile("sys\credits.inf")
+			Local stream=BufReadFile("sys\credits.inf")
 			If stream=0 Then RuntimeError("Unable to read sys\credits.inf")
-			While Not Eof(stream)
+			While Not BufEof(stream)
 				Ttbt.Ttbt=New Ttbt
-				Ttbt\txt$=ReadLine(stream)
+				Ttbt\txt$=BufReadLine(stream)
 			Wend
-			CloseFile(stream)
+			BufCloseFile(stream)
 	End Select
 End Function
 

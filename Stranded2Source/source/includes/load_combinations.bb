@@ -18,11 +18,11 @@ Function load_combinations()
 		If Left(file$,12)="combinations" And Lower(Right(file$,4))=".inf" Then
 	
 			;Read
-			stream=ReadFile("sys\"+file$)
+			stream=BufReadFile("sys\"+file$)
 			If stream=0 Then RuntimeError("Unable to read sys\"+file$)
 		
-			While Not Eof(stream)
-				in$=ReadLine(stream)
+			While Not BufEof(stream)
+				in$=BufReadLine(stream)
 				equal=Instr(in$,"=")
 				If Left(in$,1)="#" Then equal=0
 				If equal>0 Then
@@ -107,8 +107,8 @@ Function load_combinations()
 							For Tcom.Tcom=Each Tcom
 								If Tcom\id=Tcom_serial Then
 									If Tcom\mode=2 Then
-										While Not Eof(stream)
-											val$=ReadLine(stream)
+										While Not BufEof(stream)
+											val$=BufReadLine(stream)
 											If val$="script=end" Then
 												Exit
 											Else
@@ -134,7 +134,7 @@ Function load_combinations()
 					End Select
 				EndIf
 			Wend
-			CloseFile(stream)
+			BufCloseFile(stream)
 			
 		ElseIf file$="" Then
 			Exit
