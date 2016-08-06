@@ -66,7 +66,7 @@ TextureFilter("_m",4)		;_m = Masked
 TextureFilter("_c",16+32)	;_c = Clamp u and v
 TextureFilter("_u",16)		;_u = Clamp u
 TextureFilter("_v",32)		;_v = Clamp v
-TextureFilter("_h",256)		;_h = High Quality (Vram)
+TextureFilter("_h",(256) AND 65279)		;_h = High Quality (Vram)
 TextureFilter("_hc",512)	;_hc = Highcolor
 TextureFilter("_sm",64)		;_sm = Spherical Reflection Map
 
