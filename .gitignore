@@ -1,2 +1,8 @@
 StrandedII.exe
 S2-Windowed.bat
+Modules/Stranded2Boost/Release/
+Modules/Stranded2Boost/Debug/
+Modules/Stranded2Boost/.vs/
+*.VC.db
+*.VC.opendb
+Stranded2Boost.dll
