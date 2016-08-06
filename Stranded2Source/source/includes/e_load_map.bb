@@ -509,7 +509,7 @@ Function load_map(path$,pw$)
 		ElseIf Txc\mode=9 Then
 			set_state(Txc\typ,Txc\parent_class,Txc\parent_id)
 			If get_state(Txc\typ,Txc\parent_class,Txc\parent_id)
-				split$(Txc\stuff$,"ï¿½",15)
+				split$(Txc\stuff$,"¿",15)
 				TCstate\x#=Float(splits(0))
 				TCstate\y#=Float(splits(1))
 				TCstate\z#=Float(splits(2))

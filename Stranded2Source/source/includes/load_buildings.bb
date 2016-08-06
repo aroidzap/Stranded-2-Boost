@@ -154,7 +154,7 @@ Function load_buildings()
 											If val$="script=end" Then
 												Exit
 											Else
-												Tbui\script$=Tbui\script$+Trim(val$)+"˜"
+												Tbui\script$=Tbui\script$+Trim(val$)+"¦"
 											EndIf
 										Wend
 										Exit

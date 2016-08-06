@@ -15,7 +15,7 @@ Function save_map(path$,mode$,pw$,s_skills=1,s_items=1,s_vars=1,s_diary=1,s_stat
 	
 	;Main Header
 	bmpf_loadscreen(s$(10),10)
-	BufWriteLine(stream,"### Stranded II Mapfile ï¿½by Unreal Software 2004-2007")
+	BufWriteLine(stream,"### Stranded II Mapfile ©by Unreal Software 2004-2007")
 	BufWriteLine(stream,Cversion$)					;Version
 	BufWriteLine(stream,CurrentDate())				;Date
 	BufWriteLine(stream,CurrentTime())				;Time

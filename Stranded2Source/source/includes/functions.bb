@@ -136,7 +136,7 @@ Function darkbuffer()
 End Function
 
 
-;### New Trim (because of error with "Umlaute" ï¿½.ï¿½.ï¿½ in normal trim functions)
+;### New Trim (because of error with "Umlaute" Ä.Ö.Ü in normal trim functions)
 Function ntrim$(txt$)
 	While Right(txt$,1)=" "
 		txt$=Left(txt$,Len(txt$)-1)
@@ -713,10 +713,10 @@ Function cachedata(free=1,ot_skills=0,ot_items=0,ot_vars=0,ot_diary=0,ot_states=
 					Txc\typ=Tstate\typ
 					Txc\parent_class=Tstate\parent_class
 					Txc\parent_id=Tstate\parent_id
-					Txc\stuff$=Tstate\x#+"ï¿½"+Tstate\y#+"ï¿½"+Tstate\z#
-					Txc\stuff$=Txc\stuff$+"ï¿½"+Tstate\fx#+"ï¿½"+Tstate\fy#+"ï¿½"+Tstate\fz#
-					Txc\stuff$=Txc\stuff$+"ï¿½"+Tstate\value+"ï¿½"+Tstate\value_f#+"ï¿½"+Tstate\value_s$
-					Txc\stuff$=Txc\stuff$+"ï¿½"+Tstate\r+"ï¿½"+Tstate\g+"ï¿½"+Tstate\b
+					Txc\stuff$=Tstate\x#+"¿"+Tstate\y#+"¿"+Tstate\z#
+					Txc\stuff$=Txc\stuff$+"¿"+Tstate\fx#+"¿"+Tstate\fy#+"¿"+Tstate\fz#
+					Txc\stuff$=Txc\stuff$+"¿"+Tstate\value+"¿"+Tstate\value_f#+"¿"+Tstate\value_s$
+					Txc\stuff$=Txc\stuff$+"¿"+Tstate\r+"¿"+Tstate\g+"¿"+Tstate\b
 				EndIf
 			EndIf
 		Next

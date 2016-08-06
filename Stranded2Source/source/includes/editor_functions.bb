@@ -100,7 +100,7 @@ Function editor_ini_sc()
 			in$=BufReadLine(stream)
 			in$=Trim(in$)
 			If in$<>"" Then
-				split$(in$,"ï¿½",3)
+				split$(in$,"¦",3)
 				Tsc.Tsc=New Tsc
 				Tsc\cmd$=splits$(0)
 				Tsc\groups$=splits$(1)
@@ -451,7 +451,7 @@ Function editor_gencolormap(updatecolorset=1)
 			;EndIf
 		Next
 	Next
-	BufferDirty TextureBuffer(ter_tex_color)
+	BufferDirty TextureBuffer(ter_tex_color)	
 	SetBuffer BackBuffer()
 End Function
 
