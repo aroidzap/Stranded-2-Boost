@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E31559CE-6D83-4D10-A96D-275B9D14E998}</ProjectGuid>
+    <RootNamespace>Stranded2Source</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>$(ProjectDir)$(Configuration)\StrandedII.exe</NMakeOutput>
+    <NMakeBuildCommandLine>call "$(ProjectDir)build_debug.bat" -q "$(ProjectDir)"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>call "$(ProjectDir)build_debug.bat" -q "$(ProjectDir)"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>call "$(ProjectDir)clean_debug.bat"</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>$(ProjectDir)$(Configuration)\StrandedII.exe</NMakeOutput>
+    <NMakeBuildCommandLine>call "$(ProjectDir)build_release.bat" -q "$(ProjectDir)"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>call "$(ProjectDir)build_release.bat" -q "$(ProjectDir)"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>call "$(ProjectDir)clean_release.bat"</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="source\includes\ai\001_normal_animal.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\002_raptor_predator.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\003_standandsnap.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\004_idle.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\005_idleturn.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\006_standandshoot.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\007_monkey.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\008_shy.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\009_plague.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\010_landbird.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\200_crab.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\201_amphibian.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\300_fish.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\301_circlingfish.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\302_predatorfish.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\303_deepseafish.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\400_405_406_bird.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\401_circlingbird.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\404_flyinginsect.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\407_landskybird.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai\408_killerbird.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai_signals.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ai_units.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\collisions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\console.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\cull.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\debug.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\editor.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\editor_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\editor_menus.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\e_clear.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\e_environment.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\e_load_map.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\e_save_map.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_build.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_changeday.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_focus.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_input.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_input_vehicles.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_sequences.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\game_weapons.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\grasspread.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\gui.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\gui_tb.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_all.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_infos.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_items.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_objects.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_states.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\handle_units.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\input.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\interface.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_bmpf.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_buildings.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_combinations.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_commandline.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_const.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_fps.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_game.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_groups.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_infos.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_items.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_keynames.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_lightcycle.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_materials.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_media.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_objects.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_settings.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_setup.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_states.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_strings.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_units.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\load_vars.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\menu.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mods.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\motionblur.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mp_game.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mp_game_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mp_get_client.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mp_get_server.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\mp_usgn.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parentchild.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_brace.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_commands.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_dialogue.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_loop.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_math.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_math.bb2.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_pre.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\parser_vars.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\particles.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\physics.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\prepare.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\projectiles.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\randommap.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\ressources.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\sfx.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\skills.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\speech.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\tcpcommands.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\timer.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp_constants.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp_functions.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp_messages.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp_processing.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\udp_variables.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\unitpath.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\unrealsoftware.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\includes\watersystem.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\previewimagecapturer.bb">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="source\StrandedII.bb">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="source\previewreadme.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

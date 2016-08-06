@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\includes">
+      <UniqueIdentifier>{56d9f2e8-89c7-4bcf-bce1-593811ea1267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\includes\ai">
+      <UniqueIdentifier>{31976888-83f5-4c0e-81c3-97baa27d86c3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\previewimagecapturer.bb">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="source\StrandedII.bb">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="source\includes\udp_constants.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\udp_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\udp_messages.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\udp_processing.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\udp_variables.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\unitpath.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\unrealsoftware.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\ai_signals.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\ai_units.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\collisions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\console.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\cull.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\debug.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\e_clear.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\e_environment.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\e_load_map.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\e_save_map.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\editor.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\editor_menus.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_build.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_focus.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_changeday.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_input.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_input_vehicles.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_sequences.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\game_weapons.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\grasspread.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\gui.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\gui_tb.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_all.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_infos.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_items.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_objects.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_states.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\handle_units.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\input.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\interface.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_bmpf.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_buildings.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_combinations.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_commandline.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_const.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_fps.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_game.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_groups.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_infos.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_items.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_keynames.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_lightcycle.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_materials.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_media.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_objects.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_settings.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_setup.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_states.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_strings.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_units.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\load_vars.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\menu.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mods.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\motionblur.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mp_game.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mp_game_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mp_get_client.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mp_get_server.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\mp_usgn.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parentchild.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_brace.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_commands.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_dialogue.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_loop.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_math.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_math.bb2.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_pre.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\parser_vars.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\particles.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\physics.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\prepare.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\projectiles.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\randommap.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\ressources.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\sfx.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\skills.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\speech.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\tcpcommands.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\timer.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\udp.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+    <None Include="source\includes\ai\007_monkey.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\008_shy.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\009_plague.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\010_landbird.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\200_crab.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\201_amphibian.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\300_fish.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\301_circlingfish.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\302_predatorfish.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\303_deepseafish.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\400_405_406_bird.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\401_circlingbird.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\404_flyinginsect.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\407_landskybird.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\408_killerbird.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\001_normal_animal.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\002_raptor_predator.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\003_standandsnap.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\004_idle.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\006_standandshoot.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\ai\005_idleturn.bb">
+      <Filter>Source Files\includes\ai</Filter>
+    </None>
+    <None Include="source\includes\watersystem.bb">
+      <Filter>Source Files\includes</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="source\previewreadme.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="source\includes\editor_functions.bb">
+      <Filter>Source Files\includes</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
