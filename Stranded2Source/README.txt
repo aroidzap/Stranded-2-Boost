@@ -1,7 +1,7 @@
 Full source code of Stranded II 1.0.0.1
 
-DATA: /core, /mods
-SOURCES: /Stranded2Source/source_original
+DATA: /core, /mods, icon.ico
+SOURCES: /Stranded2Source/source_original, /Stranded2Source/source (modified)
 
 visit:
 	www.strandedonline.de
