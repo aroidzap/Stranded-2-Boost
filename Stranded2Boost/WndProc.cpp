@@ -1,16 +1,16 @@
 #include "WndProc.h"
 #include <windows.h>
+#include <commctrl.h>
 #include "init.h"
 
-static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
 
-static WNDPROC B3D_WndProc;
 static HWND handle;
 static bool callback_registred = false;
 
 void WndProcClear() {
 	if (callback_registred) {
-		SetWindowLongPtr(handle, GWL_WNDPROC, (LONG_PTR)&B3D_WndProc);
+		RemoveWindowSubclass(handle, S2B_WndProc, 0);
 		callback_registred = false;
 	}
 }
@@ -19,12 +19,12 @@ BBDECL void BBCALL Stranded2BoostProcedure(int hWND) {
 	/*long style = GetWindowLong((HWND)hWND, GWL_STYLE);
 	style &= ~WS_MAXIMIZE;
 	SetWindowLong((HWND)hWND, GWL_STYLE, style);*/
-	B3D_WndProc = (WNDPROC)SetWindowLongPtr((HWND)hWND, GWL_WNDPROC, (LONG_PTR)&S2B_WndProc);
+	SetWindowSubclass((HWND)hWND, S2B_WndProc, 0, 0);
 	handle = (HWND)hWND;
 	callback_registred = true;
 }
 
-static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	switch (uMsg)
 	{
@@ -43,5 +43,5 @@ static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 		break;
 	}
 
-	return CallWindowProc(B3D_WndProc, hwnd, uMsg, wParam, lParam);
+	return DefSubclassProc(hwnd, uMsg, wParam, lParam);
 }
