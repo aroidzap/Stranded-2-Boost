@@ -24,3 +24,5 @@ GetClipboardData$(format%):"GetClipboardData"
 SetClipboardData%(format%,txt$):"SetClipboardData"
 
 WS_EX_TOPMOST%(hwnd%):"WS_EX_TOPMOST"
+
+InvalidateRect%(hWnd%,lpRect%,bErase%):"InvalidateRect"

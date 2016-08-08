@@ -50,6 +50,7 @@ Else
 		RuntimeError("Unable to initiale Graphics"+Chr(13)+"Please check DirectX and GFX Drivers"+Chr(13)+Chr(13)+"Fehler beim Initialisieren der Grafik"+Chr(13)+"Bitte überprüfe DirectX und Grafiktreiber")
 	EndIf
 EndIf
+hWND=SystemProperty("AppHWND")
 
 ;Title + Pointer
 If set_moddir$="Stranded II" Then

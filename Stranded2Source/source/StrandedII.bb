@@ -11,6 +11,7 @@
 ;######################################################################################################
 
 Stranded2BoostInit();
+global hWND;
 
 ;############################################ BASIC CONSTS
 
@@ -213,6 +214,9 @@ While Not m_performquit
 	;While (MilliSecs()-loopspeedlimit)<19
 	;	Delay 1
 	;Wend
+	If set_scrwin > 1 Then
+		InvalidateRect hWND,0,True ;Windowed mode refresh rate fix
+	EndIf
 	Flip
 	
 Wend
