@@ -9,7 +9,7 @@ struct Resolution {
 	int width, height;
 	
 	bool operator<(Resolution &other){
-		return ((this->width < other.width) /*? (this->width < other.width) : (this->height < other.height)*/);
+		return ((this->width < other.width) ? (this->width < other.width) : (this->height < other.height));
 	}
 	bool operator==(Resolution &other) {
 		return ((this->width == other.width) && (this->height == other.height));
@@ -36,7 +36,7 @@ void ResolutionsInit()
 	resolutions.erase(std::unique(resolutions.begin(), resolutions.end()),resolutions.end());
 }
 
-// returns available resolution count
+// returns available resolution count - 1
 BBDECL int BBCALL GetResolutionMaxId() {
 	return resolutions.size() ? resolutions.size() - 1 : 0;
 }
