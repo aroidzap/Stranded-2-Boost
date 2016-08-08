@@ -44,18 +44,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>$(ProjectDir)$(Configuration)\StrandedII.exe</NMakeOutput>
     <NMakeBuildCommandLine>call "$(ProjectDir)build_debug.bat" -q "$(ProjectDir)"
-call "$(ProjectDir)copyfiles_debug.bat"</NMakeBuildCommandLine>
+call "$(ProjectDir)copyfiles_debug.bat"
+call "$(ProjectDir)../IconUpdate.bat" -q "$(ProjectDir).."</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>call "$(ProjectDir)build_debug.bat" -q "$(ProjectDir)"
-call "$(ProjectDir)copyfiles_debug.bat"</NMakeReBuildCommandLine>
+call "$(ProjectDir)copyfiles_debug.bat"
+call "$(ProjectDir)../IconUpdate.bat" -q "$(ProjectDir).."</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>call "$(ProjectDir)clean_debug.bat"</NMakeCleanCommandLine>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>$(ProjectDir)$(Configuration)\StrandedII.exe</NMakeOutput>
     <NMakeBuildCommandLine>call "$(ProjectDir)build_release.bat" -q "$(ProjectDir)"
-call "$(ProjectDir)copyfiles_release.bat"</NMakeBuildCommandLine>
+call "$(ProjectDir)copyfiles_release.bat"
+call "$(ProjectDir)../IconUpdate.bat" -q "$(ProjectDir).."</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>call "$(ProjectDir)build_release.bat" -q "$(ProjectDir)"
-call "$(ProjectDir)copyfiles_release.bat"</NMakeReBuildCommandLine>
+call "$(ProjectDir)copyfiles_release.bat"
+call "$(ProjectDir)../IconUpdate.bat" -q "$(ProjectDir).."</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>call "$(ProjectDir)clean_release.bat"</NMakeCleanCommandLine>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
   </PropertyGroup>

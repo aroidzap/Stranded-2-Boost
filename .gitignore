@@ -6,3 +6,5 @@ Debug/
 *.VC.db
 *.VC.opendb
 Stranded2Boost.dll
+ResourceHacker/ResourceHacker.ini
+ResourceHacker/ResourceHacker.log
