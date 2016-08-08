@@ -51,6 +51,7 @@ Else
 	EndIf
 EndIf
 hWND=SystemProperty("AppHWND")
+Stranded2BoostProcedure(hWND)
 
 ;Title + Pointer
 If set_moddir$="Stranded II" Then

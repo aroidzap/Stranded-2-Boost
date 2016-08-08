@@ -58,6 +58,7 @@
     <PostBuildEvent>
       <Command>call "$(ProjectDir)copyfiles_debug.bat"</Command>
     </PostBuildEvent>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -80,12 +81,14 @@
     <ClCompile Include="io.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="resolution.cpp" />
+    <ClCompile Include="WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blitz3D.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="io.h" />
     <ClInclude Include="resolution.h" />
+    <ClInclude Include="WndProc.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Stranded2Boost.decls" />

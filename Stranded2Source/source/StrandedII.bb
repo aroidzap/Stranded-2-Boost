@@ -10,12 +10,12 @@
 ;
 ;######################################################################################################
 
-Stranded2BoostInit();
-global hWND;
+Stranded2BoostInit()
+global hWND
 
 ;############################################ BASIC CONSTS
 
-Const Cversion$="1.0.0.1"
+Const Cversion$="1.0.0.1 S2Boost"
 
 ;############################################ INCLUDES
 
@@ -228,6 +228,6 @@ Wend
 e_clear()
 EndGraphics()
 
-Stranded2BoostClear();
+Stranded2BoostClear()
 
 End
