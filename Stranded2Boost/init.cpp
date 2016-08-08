@@ -1,9 +1,11 @@
 #include "init.h"
 #include "io.h"
+#include "resolution.h"
 
 //initialisation of Stranded2Boost
 BBDECL int BBCALL Stranded2BoostInit() {
 	BufferedFileSystemInit();
+	ResolutionsInit();
 	return 0;
 }
 

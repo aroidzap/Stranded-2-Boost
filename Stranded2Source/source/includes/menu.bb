@@ -27,13 +27,8 @@ Function menu_set(menu,save=1)
 				
 			;Settings GFX
 			Case Cmenu_set_gfx
-				Select in_slider(0)
-					Case 0 set_scrx_c=800:set_scry_c=600
-					Case 1 set_scrx_c=1024:set_scry_c=768
-					Case 2 set_scrx_c=1152:set_scry_c=864
-					Case 3 set_scrx_c=1280:set_scry_c=960
-					Case 4 set_scrx_c=1600:set_scry_c=1200
-				End Select
+				set_scrx_c = GetResolutionX(in_slider(0))
+				set_scry_c = GetResolutionY(in_slider(0))
 				Select in_slider(1)
 					Case 0 set_scrbit_c=16
 					Case 1 set_scrbit_c=24
@@ -106,13 +101,7 @@ Function menu_set(menu,save=1)
 			
 		;Settings GFX
 		Case Cmenu_set_gfx
-			Select set_scrx_c
-				Case 800 in_slider(0)=0
-				Case 1024 in_slider(0)=1
-				Case 1152 in_slider(0)=2
-				Case 1280 in_slider(0)=3
-				Case 1600 in_slider(0)=4
-			End Select
+			in_slider(0)=GetResolutionId(set_scrx_c)
 			Select set_scrbit_c
 				Case 16 in_slider(1)=0
 				Case 24 in_slider(1)=1
@@ -400,14 +389,8 @@ Function menu()
 					
 					;Resolution
 					bmpf_txt(236,63,sm$(76)+":")
-					gui_slider(636,63,4,0)
-					Select in_slider(0)
-						Case 0 bmpf_txt(436,63,"800x600")
-						Case 1 bmpf_txt(436,63,"1024x768")
-						Case 2 bmpf_txt(436,63,"1152x864")
-						Case 3 bmpf_txt(436,63,"1280x960")
-						Case 4 bmpf_txt(436,63,"1600x1200")
-					End Select
+					gui_slider(636,63,GetResolutionMaxId(),0)
+					bmpf_txt(436,63,GetResolutionName(in_slider(0)))
 					
 					;Color Depth
 					bmpf_txt(236,83,sm$(77)+":")

@@ -1,7 +1,15 @@
 #pragma once
 #include "Blitz3D.h"
 
-// GetResolutionCount%():"_GetResolutionCount@0"
-BBDECL int BBCALL GetResolutionCount();
-// GetResolutionComponent%(component%,id%):"_GetResolutionComponent@8"
-BBDECL int BBCALL GetResolutionComponent(int component, int id);
+void ResolutionsInit();
+
+// GetResolutionMaxId%():"_GetResolutionMaxId@0"
+BBDECL int BBCALL GetResolutionMaxId();
+// GetResolutionId%(id%):"_GetResolutionId@4"
+BBDECL int BBCALL GetResolutionId(int width);
+// GetResolutionName$(id%):"_GetResolutionName@4"
+BBDECL const char* BBCALL GetResolutionName(int id);
+// GetResolutionX%(id%):"_GetResolutionX@4"
+BBDECL int BBCALL GetResolutionX(int id);
+// GetResolutionY%(id%):"_GetResolutionY@4"
+BBDECL int BBCALL GetResolutionY(int id);

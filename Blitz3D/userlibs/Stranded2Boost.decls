@@ -3,6 +3,7 @@
 Stranded2BoostInit%():"_Stranded2BoostInit@0"
 Stranded2BoostClear%():"_Stranded2BoostClear@0"
 
+
 BufOpenFile%(path$):"_BufOpenFile@4"
 BufReadFile%(path$):"_BufReadFile@4"
 BufWriteFile%(path$):"_BufWriteFile@4"
@@ -34,5 +35,8 @@ BufWriteString(handle%,string$):"_BufWriteString@8"
 BufWriteLine(handle%,string$):"_BufWriteLine@8"
 
 
-GetResolutionCount%():"_GetResolutionCount@0"
-GetResolutionComponent%(component%,id%):"_GetResolutionComponent@8"
+GetResolutionMaxId%():"_GetResolutionMaxId@0"
+GetResolutionId%(id%):"_GetResolutionId@4"
+GetResolutionName$(id%):"_GetResolutionName@4"
+GetResolutionX%(id%):"_GetResolutionX@4"
+GetResolutionY%(id%):"_GetResolutionY@4"
