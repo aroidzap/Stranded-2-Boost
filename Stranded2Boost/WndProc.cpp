@@ -35,6 +35,7 @@ static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 		}
 		else {
 			ShowWindow(hwnd, SW_SHOW);
+			UpdateWindow(hwnd);
 		}
 		break;
 	case WM_DESTROY:
