@@ -4,6 +4,7 @@ Stranded2BoostInit%():"_Stranded2BoostInit@0"
 Stranded2BoostClear%():"_Stranded2BoostClear@0"
 
 Stranded2BoostProcedure(hWND%):"_Stranded2BoostProcedure@4"
+ResetDisplayMode():"_ResetDisplayMode@0"
 
 
 BufOpenFile%(path$):"_BufOpenFile@4"

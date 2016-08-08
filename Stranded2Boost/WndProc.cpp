@@ -24,6 +24,10 @@ BBDECL void BBCALL Stranded2BoostProcedure(int hWND) {
 	callback_registred = true;
 }
 
+BBDECL void BBCALL ResetDisplayMode() {
+	ChangeDisplaySettings(NULL, 0);
+}
+
 static LRESULT CALLBACK S2B_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	switch (uMsg)

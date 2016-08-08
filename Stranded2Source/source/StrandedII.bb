@@ -226,6 +226,7 @@ Wend
 ;############################################ SHUTDOWN
 
 e_clear()
+ResetDisplayMode()
 EndGraphics()
 
 Stranded2BoostClear()
