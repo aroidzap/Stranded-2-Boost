@@ -7,4 +7,4 @@ void WndProcClear();
 BBDECL void BBCALL Stranded2BoostProcedure(int hWND);
 
 // ResetDisplayMode():"_ResetDisplayMode@0"
-BBDECL void BBCALL ResetDisplayMode();
+BBDECL inline void BBCALL ResetDisplayMode();
