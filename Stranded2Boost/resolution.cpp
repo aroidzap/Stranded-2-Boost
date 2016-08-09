@@ -9,7 +9,7 @@ struct Resolution {
 	int width, height;
 	
 	bool operator<(Resolution &other){
-		return ((this->width < other.width) ? (this->width < other.width) : (this->height < other.height));
+		return ((this->width != other.width) ? (this->width < other.width) : (this->height < other.height));
 	}
 	bool operator==(Resolution &other) {
 		return ((this->width == other.width) && (this->height == other.height));
