@@ -7,6 +7,7 @@
 BBDECL int BBCALL Stranded2BoostInit() {
 	BufferedFileSystemInit();
 	ResolutionsInit();
+	WndProcInit();
 	return 0;
 }
 

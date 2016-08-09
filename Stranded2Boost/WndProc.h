@@ -1,6 +1,7 @@
 #pragma once
 #include "Blitz3D.h"
 
+void WndProcInit();
 void WndProcClear();
 
 // Stranded2BoostProcedure(hWND%):"_Stranded2BoostProcedure@4"

@@ -27,6 +27,9 @@
     <ClCompile Include="WndProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ddraw_hook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resolution.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WndProc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ddraw_hook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
