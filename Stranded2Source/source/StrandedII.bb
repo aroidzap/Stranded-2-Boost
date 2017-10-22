@@ -15,7 +15,7 @@ global hWND
 
 ;############################################ BASIC CONSTS
 
-Const Cversion$="1.0.0.1 S2Boost"
+Const Cversion$="1.0.0.1 | S2Boost 1.0a"
 
 ;############################################ INCLUDES
 

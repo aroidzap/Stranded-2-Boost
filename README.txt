@@ -23,7 +23,7 @@ After launching StrandedII.exe I got "User lib not found." message.
 Icon seems not to be updating.
 - You have to rebuild your icon cache. (Restarting your PC should help.)
 I'm not developer, just Stranded II player. Where can i get StrandedII.exe?
-- This modification and library is still under development. Binary files will be released as soon as everything will be working properly.
+- You can find it here: https://github.com/Aroidzap/Stranded-2-Boost/releases.
 I want to play "The Survivalist" mod with this.
 - Support is planned in future, but it depends on other people than just me.
 There are no updates for a long time.
