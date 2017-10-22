@@ -225,8 +225,9 @@ Wend
 
 ;############################################ SHUTDOWN
 
+DirectDraw7_clear()
+
 e_clear()
-ResetDisplayMode()
 EndGraphics()
 
 Stranded2BoostClear()

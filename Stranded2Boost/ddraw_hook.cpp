@@ -11,7 +11,7 @@ void ddraw_hook_safe_call() {
 
 #pragma optimize( "", off )
 int DirectDrawCreateEx_CreateHook (	void *original /*8*/, void* hook /*12*/, void* VirtualProtect_func  /*16*/, 
-									void **continue_address  /*20*/, void **oldcontent_a  /*24*/, void **oldcontent_b /*28*/)
+									void **continue_address  /*20*/, m32 *oldcontent_a  /*24*/, m32 *oldcontent_b /*28*/)
 {
 	if (_safe_call) {
 		__asm {
@@ -42,6 +42,22 @@ int DirectDrawCreateEx_CreateHook (	void *original /*8*/, void* hook /*12*/, voi
 			mov eax, [edx + 4];
 			mov ecx, [ebp + 28]
 			mov[ecx], eax; //save oldcontent_b
+
+			;// === check instructions ===
+			;//	MOV EDI,EDI
+			;//	PUSH EBP
+			;//	MOV EBP, ESP
+
+			cmp [edx], 0x8b
+			jne _hook_failed_label
+			cmp [edx+1], 0xff
+			jne _hook_failed_label
+			cmp [edx+2], 0x55
+			jne _hook_failed_label
+			cmp [edx+3], 0x8b
+			jne _hook_failed_label
+			cmp [edx+4], 0xec
+			jne _hook_failed_label
 
 			;// === turn off protection ===
 
@@ -92,33 +108,27 @@ int DirectDrawCreateEx_CreateHook (	void *original /*8*/, void* hook /*12*/, voi
 		}
 		_safe_call = false;
 		return 0;
+
+	_hook_failed_label:
+		__asm {
+			pop edx;
+			pop ecx;
+			pop ebx;
+			pop eax;
+		}
+		OutputDebugString("ERROR: \"DirectDrawCreateEx_CreateHook\" failed!!!");
+		throw; return 1;
 	}
 	else {
 		OutputDebugString("ERROR: Calling \"DirectDrawCreateEx_CreateHook\" is not safe!!! You must know, what you are doing!!!");
 		throw; return 1;
 	}
 }
+#pragma optimize( "", on )
 
-void DirectDrawCreateEx_HookContinue(void *continue_address, int EBP)
-{
-	if (_safe_call) {
-		_safe_call = false;
-		__asm {
-			mov eax, [ebp + 8]
-			mov esp, [ebp + 12]
-			mov ebp, esp
-
-			jmp eax
-		}
-	}
-	else {
-		OutputDebugString("ERROR: Calling \"DirectDrawCreateEx_HookContinue\" is not safe!!! You must know, what you are doing!!!");
-		throw;
-	}
-}
-
+#pragma optimize( "", off )
 int DirectDrawCreateEx_RemoveHook(	void *original /*8*/, void* VirtualProtect_func /*12*/,
-									void *oldcontent_a /*16*/, void *oldcontent_b /*20*/)
+									m32 oldcontent_a /*16*/, m32 oldcontent_b /*20*/)
 {
 	if (_safe_call) {
 		__asm {
